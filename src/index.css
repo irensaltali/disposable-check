@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Harvest Color Palette - Warm, earthy, autumn-inspired design system
+   All colors in HSL for easy manipulation */
+
+@layer base {
+  :root {
+    /* Warm off-white background with subtle cream undertone */
+    --background: 40 33% 98%;
+    --foreground: 25 45% 13%;
+
+    /* Cards with warm paper-like feel */
+    --card: 42 40% 97%;
+    --card-foreground: 25 45% 13%;
+
+    /* Popovers match cards */
+    --popover: 42 40% 97%;
+    --popover-foreground: 25 45% 13%;
+
+    /* Primary: Rich harvest orange - the hero color */
+    --primary: 24 85% 48%;
+    --primary-foreground: 42 40% 98%;
+
+    /* Secondary: Soft wheat tone */
+    --secondary: 38 35% 91%;
+    --secondary-foreground: 25 40% 20%;
+
+    /* Muted: Warm neutral for subtle elements */
+    --muted: 36 25% 92%;
+    --muted-foreground: 25 20% 45%;
+
+    /* Accent: Burnt sienna for interactive highlights */
+    --accent: 18 70% 50%;
+    --accent-foreground: 42 40% 98%;
+
+    /* Destructive: Deep red for errors/warnings */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders: Warm beige */
+    --border: 35 30% 85%;
+    --input: 35 30% 85%;
+    --ring: 24 85% 48%;
+
+    --radius: 0.625rem;
+
+    /* Sidebar with warm undertones */
+    --sidebar-background: 40 30% 97%;
+    --sidebar-foreground: 25 35% 30%;
+    --sidebar-primary: 24 80% 45%;
+    --sidebar-primary-foreground: 42 40% 98%;
+    --sidebar-accent: 36 30% 93%;
+    --sidebar-accent-foreground: 25 40% 20%;
+    --sidebar-border: 35 25% 88%;
+    --sidebar-ring: 24 85% 48%;
+  }
+
+  .dark {
+    /* Deep warm brown background */
+    --background: 25 30% 8%;
+    --foreground: 38 25% 92%;
+
+    /* Dark cards with warm undertone */
+    --card: 25 28% 11%;
+    --card-foreground: 38 25% 92%;
+
+    /* Popovers */
+    --popover: 25 28% 11%;
+    --popover-foreground: 38 25% 92%;
+
+    /* Primary: Bright harvest orange for dark mode */
+    --primary: 28 80% 55%;
+    --primary-foreground: 25 30% 8%;
+
+    /* Secondary: Dark warm brown */
+    --secondary: 25 25% 18%;
+    --secondary-foreground: 38 25% 90%;
+
+    /* Muted: Subtle warm dark */
+    --muted: 25 22% 16%;
+    --muted-foreground: 35 18% 58%;
+
+    /* Accent: Warm amber */
+    --accent: 32 70% 45%;
+    --accent-foreground: 38 25% 92%;
+
+    /* Destructive */
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Dark mode borders */
+    --border: 25 22% 18%;
+    --input: 25 22% 18%;
+    --ring: 28 80% 55%;
+
+    /* Dark sidebar */
+    --sidebar-background: 25 28% 10%;
+    --sidebar-foreground: 38 22% 88%;
+    --sidebar-primary: 28 75% 52%;
+    --sidebar-primary-foreground: 25 30% 8%;
+    --sidebar-accent: 25 22% 16%;
+    --sidebar-accent-foreground: 38 22% 88%;
+    --sidebar-border: 25 20% 16%;
+    --sidebar-ring: 28 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth color transitions for theme switching */
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Custom utility for harvest gradient */
+@layer utilities {
+  .bg-harvest-gradient {
+    background: linear-gradient(135deg, hsl(24, 85%, 48%) 0%, hsl(18, 70%, 50%) 100%);
+  }
+  
+  .bg-harvest-gradient-dark {
+    background: linear-gradient(135deg, hsl(28, 80%, 55%) 0%, hsl(32, 70%, 45%) 100%);
+  }
+
+  .text-harvest-gradient {
+    background: linear-gradient(135deg, hsl(24, 85%, 48%) 0%, hsl(18, 70%, 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
