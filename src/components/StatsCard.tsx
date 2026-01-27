@@ -5,9 +5,10 @@ interface StatsCardProps {
   icon: LucideIcon;
   value: string | number;
   label: string;
+  loading?: boolean;
 }
 
-export function StatsCard({ icon: Icon, value, label }: StatsCardProps) {
+export function StatsCard({ icon: Icon, value, label, loading }: StatsCardProps) {
   const formattedValue =
     typeof value === "number" ? value.toLocaleString() : value;
 
@@ -18,7 +19,11 @@ export function StatsCard({ icon: Icon, value, label }: StatsCardProps) {
           <Icon className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <p className="text-2xl font-bold">{formattedValue}</p>
+          {loading ? (
+            <div className="h-8 w-24 bg-muted animate-pulse rounded" />
+          ) : (
+            <p className="text-2xl font-bold">{formattedValue}</p>
+          )}
           <p className="text-sm text-muted-foreground">{label}</p>
         </div>
       </CardContent>
