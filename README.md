@@ -1,9 +1,21 @@
-# 🛡️ DisposableCheck
+<div align="center">
+  <a href="https://disposablecheck.irensaltali.com">
+    <img src="public/logo.png" alt="DisposableCheck Logo" width="120" height="120">
+  </a>
 
-**Free Disposable Email Detector & API**
+  # 🛡️ DisposableCheck
 
-[![Website](https://img.shields.io/badge/Website-disposablecheck.irensaltali.com-blue)](https://disposablecheck.irensaltali.com)
-[![API Docs](https://img.shields.io/badge/API-Documentation-green)](https://disposablecheck.irensaltali.com/api)
+  **Free Disposable Email Detector & API**
+
+  <a href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?launch=disposablecheck-disposable-email-check" target="_blank">
+    <img src="https://img.shields.io/badge/Product_Hunt-Launch-orange?logo=product-hunt&style=flat-square" alt="Product Hunt Launch">
+  </a>
+
+  [![Website](https://img.shields.io/badge/Website-disposablecheck.irensaltali.com-blue?style=flat-square)](https://disposablecheck.irensaltali.com)
+  [![API Docs](https://img.shields.io/badge/API-Documentation-green?style=flat-square)](https://disposablecheck.irensaltali.com/api)
+</div>
+
+![DisposableCheck Banner](public/og-image.png)
 
 DisposableCheck is a free online service that helps detect whether an email address is disposable (temporary/throwaway) and offers a free API for developers to integrate this functionality into their applications.
 
