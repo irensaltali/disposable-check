@@ -55,6 +55,37 @@ const Index = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Instantly check if an email address is from a disposable or temporary email provider. Free to use, with a public API.
             </p>
+
+            <div className="flex justify-center mt-8">
+              <a
+                href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-disposablecheck-disposable-email-check"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block dark:hidden"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1068935&theme=light&t=1769528281886"
+                  alt="DisposableCheck – Disposable Email Check - Free Disposable Email Detector & API | Product Hunt"
+                  style={{ width: '250px', height: '54px' }}
+                  width="250"
+                  height="54"
+                />
+              </a>
+              <a
+                href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-disposablecheck-disposable-email-check"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden dark:block"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1068935&theme=dark&t=1769528358371"
+                  alt="DisposableCheck – Disposable Email Check - Free Disposable Email Detector & API | Product Hunt"
+                  style={{ width: '250px', height: '54px' }}
+                  width="250"
+                  height="54"
+                />
+              </a>
+            </div>
           </div>
 
           <EmailChecker />
