@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, XCircle, Mail, Loader2 } from "lucide-react";
-import { checkEmailDisposable, isValidEmail } from "@/lib/mockData";
+import { isValidEmail } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
 
 export function EmailChecker() {
@@ -23,12 +23,38 @@ export function EmailChecker() {
       return;
     }
 
-    setIsChecking(true);
-    const timer = setTimeout(() => {
-      const checkResult = checkEmailDisposable(email);
-      setResult(checkResult);
-      setIsChecking(false);
-    }, 300);
+    // Debounce the API call
+    const timer = setTimeout(async () => {
+      setIsChecking(true);
+      try {
+        const response = await fetch(
+          `https://disposablecheck.irensaltali.com/api/v1/check?email=${encodeURIComponent(
+            email
+          )}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setResult({
+            isDisposable: data.is_disposable,
+            domain: data.domain,
+          });
+        } else {
+          console.error("API Error", response.status);
+          // Fallback to offline check if API fails? 
+          // Or just show error?
+          // Since mockData is still available, maybe fallback?
+          // But the user wants usage to be counted.
+          // Let's stick to API. If it fails, maybe clear result or show error.
+          setResult(null);
+        }
+      } catch (error) {
+        console.error("Failed to check email:", error);
+        setResult(null);
+      } finally {
+        setIsChecking(false);
+      }
+    }, 500); // Increased debounce to 500ms to reduce API calls while typing
 
     return () => clearTimeout(timer);
   }, [email]);
