@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -6,27 +6,137 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AttributionPopup } from "@/components/AttributionPopup";
-import { CheckCircle, Key, Copy, Check, Info } from "lucide-react";
+import { CheckCircle, Key, Info, Loader2 } from "lucide-react";
+
+const TURNSTILE_SITE_KEY = "0x4AAAAAACTbZs1Gmq6N2iTM";
+const API_BASE_URL = "https://disposablecheck.irensaltali.com/api";
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: string | HTMLElement, options: {
+        sitekey: string;
+        callback?: (token: string) => void;
+        "error-callback"?: () => void;
+        "expired-callback"?: () => void;
+        theme?: "light" | "dark" | "auto";
+      }) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
 
 const GetApiKey = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
 
-  // Mock API key
-  const mockApiKey = "dk_live_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6";
+  // Load Turnstile script
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src*="turnstile"]');
+    if (existingScript) return;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubmitted(true);
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }, []);
+
+  // Render Turnstile widget
+  useEffect(() => {
+    const renderWidget = () => {
+      if (!turnstileRef.current || !window.turnstile || widgetIdRef.current) return;
+
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token: string) => {
+          setTurnstileToken(token);
+          setError(null);
+        },
+        "error-callback": () => {
+          setError("Turnstile verification failed. Please try again.");
+          setTurnstileToken(null);
+        },
+        "expired-callback": () => {
+          setTurnstileToken(null);
+        },
+        theme: "auto",
+      });
+    };
+
+    // Check if turnstile is ready, otherwise wait
+    const checkAndRender = () => {
+      if (window.turnstile) {
+        renderWidget();
+      } else {
+        setTimeout(checkAndRender, 100);
+      }
+    };
+
+    checkAndRender();
+
+    return () => {
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+    };
+  }, []);
+
+  const resetTurnstile = useCallback(() => {
+    if (widgetIdRef.current && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+      setTurnstileToken(null);
     }
-  };
+  }, []);
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(mockApiKey);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!email) {
+      setError("Please enter your email address.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setError("Please complete the verification challenge.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/v1/keys`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          turnstileToken,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create API key. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+      resetTurnstile();
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -40,31 +150,16 @@ const GetApiKey = () => {
                   <div className="mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900/30 p-3 w-fit">
                     <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <h2 className="text-xl font-semibold mb-2">Your API Key is Ready!</h2>
+                  <h2 className="text-xl font-semibold mb-2">Check Your Email!</h2>
                   <p className="text-muted-foreground">
-                    Keep this key safe. You can use it to make API requests.
+                    We've sent your API key to <strong>{email}</strong>.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    If you don't see it, check your spam folder.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label>Your API Key</Label>
-                    <div className="flex gap-2">
-                      <Input
-                        value={mockApiKey}
-                        readOnly
-                        className="font-mono text-sm"
-                      />
-                      <Button variant="outline" size="icon" onClick={copyToClipboard}>
-                        {copied ? (
-                          <Check className="h-4 w-4" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
-                      </Button>
-                    </div>
-                  </div>
-
                   <div className="border rounded-lg p-4 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
                     <h4 className="font-medium mb-2 text-amber-800 dark:text-amber-200 flex items-center gap-2">
                       <span className="text-lg">⚠️</span> Attribution Required
@@ -84,15 +179,6 @@ const GetApiKey = () => {
                       <li>• <a href="https://sendfax.pro" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">sendfax.pro</a></li>
                       <li>• <a href="https://zenrise.app" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">zenrise.app</a></li>
                     </ul>
-                  </div>
-
-                  <div className="border rounded-lg p-4 bg-muted/50">
-                    <h4 className="font-medium mb-2">Quick Start</h4>
-                    <pre className="text-sm overflow-x-auto">
-                      {`curl -X GET \\
-  'https://api.disposablecheck.com/v1/check?email=test@tempmail.com' \\
-  -H 'X-API-Key: ${mockApiKey}'`}
-                    </pre>
                   </div>
 
                   <div className="text-center text-sm text-muted-foreground">
@@ -139,11 +225,28 @@ const GetApiKey = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    disabled={loading}
                   />
                 </div>
 
-                <Button type="submit" className="w-full">
-                  Get Free API Key
+                {/* Turnstile Widget */}
+                <div ref={turnstileRef} className="flex justify-center" />
+
+                {error && (
+                  <p className="text-sm text-red-600 dark:text-red-400 text-center">
+                    {error}
+                  </p>
+                )}
+
+                <Button type="submit" className="w-full" disabled={loading || !turnstileToken}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Get Free API Key"
+                  )}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">

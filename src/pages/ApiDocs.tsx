@@ -32,7 +32,7 @@ const ApiDocs = () => {
                 <div>
                   <h4 className="font-medium mb-2">Endpoint</h4>
                   <code className="block bg-muted p-3 rounded-md text-sm">
-                    GET https://api.disposablecheck.com/v1/check?email={"{email}"}
+                    GET https://disposablecheck.irensaltali.com/api/v1/check?email={"{email}"}
                   </code>
                 </div>
 
@@ -75,7 +75,7 @@ const ApiDocs = () => {
                   <TabsContent value="javascript" className="mt-4">
                     <pre className="bg-muted p-4 rounded-md text-sm overflow-x-auto">
                       {`const response = await fetch(
-  'https://api.disposablecheck.com/v1/check?email=user@example.com',
+  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com',
   {
     headers: {
       'X-API-Key': 'your_api_key_here'
@@ -92,7 +92,7 @@ console.log(data.is_disposable); // true or false`}
                       {`import requests
 
 response = requests.get(
-    'https://api.disposablecheck.com/v1/check',
+    'https://disposablecheck.irensaltali.com/api/v1/check',
     params={'email': 'user@example.com'},
     headers={'X-API-Key': 'your_api_key_here'}
 )
@@ -104,7 +104,7 @@ print(data['is_disposable'])  # True or False`}
                   <TabsContent value="curl" className="mt-4">
                     <pre className="bg-muted p-4 rounded-md text-sm overflow-x-auto">
                       {`curl -X GET \\
-  'https://api.disposablecheck.com/v1/check?email=user@example.com' \\
+  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com' \\
   -H 'X-API-Key: your_api_key_here'`}
                     </pre>
                   </TabsContent>
