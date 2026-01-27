@@ -57,8 +57,9 @@ export function Layout({ children }: LayoutProps) {
               size="icon"
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
             </Button>
           </div>
         </div>
@@ -94,12 +95,12 @@ export function Layout({ children }: LayoutProps) {
             <div className="flex items-center gap-4">
               <AttributionPopup
                 trigger={
-                  <button className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+                  <button className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">
                     Attribution
                   </button>
                 }
               />
-              <Link to="/terms" className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+              <Link to="/terms" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">
                 Terms of Service
               </Link>
             </div>

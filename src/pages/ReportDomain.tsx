@@ -86,9 +86,12 @@ const ReportDomain = () => {
                   <Label htmlFor="domain">Domain Name</Label>
                   <Input
                     id="domain"
+                    name="domain"
                     placeholder="e.g., tempmail.com"
                     value={domain}
                     onChange={(e) => setDomain(e.target.value)}
+                    autoComplete="off"
+                    spellCheck={false}
                   />
                 </div>
 
@@ -96,7 +99,8 @@ const ReportDomain = () => {
                   <Label htmlFor="reason">Why is this disposable? (optional)</Label>
                   <Textarea
                     id="reason"
-                    placeholder="Provide any context about why this domain should be flagged..."
+                    name="reason"
+                    placeholder="Provide any context about why this domain should be flagged…"
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
                     rows={3}

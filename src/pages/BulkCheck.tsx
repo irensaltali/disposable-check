@@ -141,6 +141,7 @@ const BulkCheck = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <Textarea
+                name="emails"
                 placeholder="email1@example.com&#10;email2@tempmail.com&#10;email3@gmail.com"
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
@@ -152,7 +153,7 @@ const BulkCheck = () => {
                   {isProcessing ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
+                      Processing…
                     </>
                   ) : (
                     "Check Emails"
