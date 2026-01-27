@@ -23,7 +23,7 @@ export function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
@@ -85,9 +85,9 @@ export function Layout({ children }: LayoutProps) {
         )}
       </header>
 
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
 
-      <footer className="border-t bg-muted/30 py-8 mt-16">
+      <footer className="border-t bg-muted/30 py-8 mt-auto">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© 2026 DisposableCheck. Free disposable email detection tool & API.</p>
