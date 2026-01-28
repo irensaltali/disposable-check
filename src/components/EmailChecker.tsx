@@ -5,7 +5,11 @@ import { CheckCircle, XCircle, Mail, Loader2 } from "lucide-react";
 import { isValidEmail } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
 
-export function EmailChecker() {
+interface EmailCheckerProps {
+  onEmailChecked?: () => void;
+}
+
+export function EmailChecker({ onEmailChecked }: EmailCheckerProps) {
   const [email, setEmail] = useState("");
   const [result, setResult] = useState<{
     isDisposable: boolean;
@@ -39,6 +43,8 @@ export function EmailChecker() {
             isDisposable: data.is_disposable,
             domain: data.domain,
           });
+          // Trigger the callback to refresh stats
+          onEmailChecked?.();
         } else {
           console.error("API Error", response.status);
           // Fallback to offline check if API fails? 
