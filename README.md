@@ -1,21 +1,21 @@
 <div align="center">
   <a href="https://disposablecheck.irensaltali.com">
-    <img src="public/logo.png" alt="DisposableCheck Logo" width="120" height="120">
+    <img src="https://raw.githubusercontent.com/irensaltali/disposable-check-all/main/disposable-check/public/logo.png" alt="DisposableCheck Logo" width="120" height="120">
   </a>
 
   # 🛡️ DisposableCheck
 
   **Free Disposable Email Detector & API**
 
-  <a href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?launch=disposablecheck-disposable-email-check" target="_blank">
-    <img src="https://img.shields.io/badge/Product_Hunt-Launch-orange?logo=product-hunt&style=flat-square" alt="Product Hunt Launch">
+  <a href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-disposablecheck-disposable-email-check" target="_blank">
+    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1068935&theme=light" alt="DisposableCheck – Disposable Email Check - Free Disposable Email Detector & API | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" />
   </a>
 
   [![Website](https://img.shields.io/badge/Website-disposablecheck.irensaltali.com-blue?style=flat-square)](https://disposablecheck.irensaltali.com)
   [![API Docs](https://img.shields.io/badge/API-Documentation-green?style=flat-square)](https://disposablecheck.irensaltali.com/api)
 </div>
 
-![DisposableCheck Banner](public/og-image.png)
+![DisposableCheck Banner](https://raw.githubusercontent.com/irensaltali/disposable-check-all/main/disposable-check/public/og-image.png)
 
 DisposableCheck is a free online service that helps detect whether an email address is disposable (temporary/throwaway) and offers a free API for developers to integrate this functionality into their applications.
 
