@@ -10,6 +10,7 @@ import ReportDomain from "./pages/ReportDomain";
 import ApiDocs from "./pages/ApiDocs";
 import GetApiKey from "./pages/GetApiKey";
 import Terms from "./pages/Terms";
+import Research from "./pages/Research";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/docs" element={<ApiDocs />} />
             <Route path="/get-api-key" element={<GetApiKey />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/the-disposable-email-epidemic" element={<Research />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
