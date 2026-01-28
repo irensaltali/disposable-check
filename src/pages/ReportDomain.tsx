@@ -9,13 +9,16 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, AlertCircle } from "lucide-react";
 import { DISPOSABLE_DOMAINS } from "@/lib/mockData";
 
+const API_BASE_URL = "https://disposablecheck.irensaltali.com/api";
+
 const ReportDomain = () => {
   const [domain, setDomain] = useState("");
   const [reason, setReason] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -31,8 +34,32 @@ const ReportDomain = () => {
       return;
     }
 
-    // Mock submission
-    setSubmitted(true);
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/v1/report`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          domain: cleanDomain,
+          reason: reason.trim() || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || data.error || "Failed to report domain. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -92,6 +119,7 @@ const ReportDomain = () => {
                     onChange={(e) => setDomain(e.target.value)}
                     autoComplete="off"
                     spellCheck={false}
+                    disabled={loading}
                   />
                 </div>
 
@@ -104,6 +132,7 @@ const ReportDomain = () => {
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
                     rows={3}
+                    disabled={loading}
                   />
                 </div>
 
@@ -115,8 +144,8 @@ const ReportDomain = () => {
                   </Alert>
                 )}
 
-                <Button type="submit" className="w-full">
-                  Submit Report
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? "Submitting..." : "Submit Report"}
                 </Button>
               </form>
             </CardContent>
