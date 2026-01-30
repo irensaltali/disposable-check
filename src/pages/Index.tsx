@@ -58,7 +58,6 @@ const Index = () => {
 
   const handleEmailChecked = () => {
     // Force a refresh of the stats when an email is manually checked
-    // This resets the polling loop too, which is acceptable or even desired behavior (resetting the 120 limit)
     setRefreshKey(prev => prev + 1);
   };
 
@@ -73,51 +72,20 @@ const Index = () => {
 
   return (
     <Layout>
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="py-10 sm:py-16 lg:py-20">
+        <div className="container mx-auto container-responsive">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
               Disposable Email Detector
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
               Instantly check if an email address is from a disposable or temporary email provider. Free to use, with a public API.
             </p>
-
-            <div className="flex justify-center mt-8">
-              <a
-                href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-disposablecheck-disposable-email-check"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block dark:hidden"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1068935&theme=light&t=1769528281886"
-                  alt="DisposableCheck – Disposable Email Check - Free Disposable Email Detector & API | Product Hunt"
-                  style={{ width: '250px', height: '54px' }}
-                  width="250"
-                  height="54"
-                />
-              </a>
-              <a
-                href="https://www.producthunt.com/products/disposablecheck-disposable-email-check?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-disposablecheck-disposable-email-check"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden dark:block"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1068935&theme=dark&t=1769528358371"
-                  alt="DisposableCheck – Disposable Email Check - Free Disposable Email Detector & API | Product Hunt"
-                  style={{ width: '250px', height: '54px' }}
-                  width="250"
-                  height="54"
-                />
-              </a>
-            </div>
           </div>
 
           <EmailChecker onEmailChecked={handleEmailChecked} />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-10 sm:mt-14 lg:mt-16 max-w-4xl mx-auto">
             <StatsCard
               icon={Mail}
               value={displayStats.totalEmailsChecked}
@@ -136,6 +104,7 @@ const Index = () => {
               value={displayStats.recentContributions}
               label="Community Reports"
               loading={loading}
+              className="sm:col-span-2 lg:col-span-1"
             />
           </div>
         </div>

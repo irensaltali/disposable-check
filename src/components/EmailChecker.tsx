@@ -47,11 +47,6 @@ export function EmailChecker({ onEmailChecked }: EmailCheckerProps) {
           onEmailChecked?.();
         } else {
           console.error("API Error", response.status);
-          // Fallback to offline check if API fails? 
-          // Or just show error?
-          // Since mockData is still available, maybe fallback?
-          // But the user wants usage to be counted.
-          // Let's stick to API. If it fails, maybe clear result or show error.
           setResult(null);
         }
       } catch (error) {
@@ -63,12 +58,12 @@ export function EmailChecker({ onEmailChecked }: EmailCheckerProps) {
     }, 500); // Increased debounce to 500ms to reduce API calls while typing
 
     return () => clearTimeout(timer);
-  }, [email]);
+  }, [email, onEmailChecked]);
 
   return (
-    <div className="w-full max-w-xl mx-auto">
+    <div className="w-full max-w-xl mx-auto px-4 sm:px-0">
       <div className="relative">
-        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
         <Input
           type="email"
           name="email"
@@ -76,40 +71,40 @@ export function EmailChecker({ onEmailChecked }: EmailCheckerProps) {
           placeholder="Enter email address to check…"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="pl-12 h-14 text-lg"
+          className="pl-10 sm:pl-12 h-12 sm:h-14 text-base sm:text-lg"
         />
         {isChecking && (
-          <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 animate-spin text-muted-foreground" />
+          <Loader2 className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 animate-spin text-muted-foreground" />
         )}
       </div>
 
       {email && isValid && result && !isChecking && (
         <Card
           className={cn(
-            "mt-4 transition-all",
+            "mt-3 sm:mt-4 transition-all",
             result.isDisposable
               ? "border-destructive bg-destructive/5"
-              : "border-green-500 bg-green-50 dark:bg-green-950/20"
+              : "border-success bg-success/5"
           )}
         >
-          <CardContent className="flex items-center gap-3 p-4">
+          <CardContent className="flex items-start sm:items-center gap-3 p-3 sm:p-4">
             {result.isDisposable ? (
               <>
-                <XCircle className="h-6 w-6 text-destructive shrink-0" />
-                <div>
-                  <p className="font-medium text-destructive">Disposable Email Detected</p>
-                  <p className="text-sm text-muted-foreground">
-                    The domain <span className="font-mono">{result.domain}</span> is a known disposable email provider.
+                <XCircle className="h-5 w-5 sm:h-6 sm:w-6 text-destructive shrink-0 mt-0.5 sm:mt-0" />
+                <div className="min-w-0">
+                  <p className="font-medium text-destructive text-sm sm:text-base">Disposable Email Detected</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    The domain <span className="font-mono break-all">{result.domain}</span> is a known disposable email provider.
                   </p>
                 </div>
               </>
             ) : (
               <>
-                <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-500 shrink-0" />
-                <div>
-                  <p className="font-medium text-green-700 dark:text-green-400">Valid Email Domain</p>
-                  <p className="text-sm text-muted-foreground">
-                    The domain <span className="font-mono">{result.domain}</span> appears to be a legitimate email provider.
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-success shrink-0 mt-0.5 sm:mt-0" />
+                <div className="min-w-0">
+                  <p className="font-medium text-success text-sm sm:text-base">Valid Email Domain</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    The domain <span className="font-mono break-all">{result.domain}</span> appears to be a legitimate email provider.
                   </p>
                 </div>
               </>
@@ -119,7 +114,7 @@ export function EmailChecker({ onEmailChecked }: EmailCheckerProps) {
       )}
 
       {email && !isValid && (
-        <p className="mt-2 text-sm text-muted-foreground">Please enter a valid email address</p>
+        <p className="mt-2 text-xs sm:text-sm text-muted-foreground">Please enter a valid email address</p>
       )}
     </div>
   );

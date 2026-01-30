@@ -27,37 +27,37 @@ export function AttributionPopup({ trigger }: AttributionPopupProps) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 {trigger || (
-                    <Button variant="link" className="h-auto p-0 text-amber-600 dark:text-amber-400 font-medium">
+                    <Button variant="link" className="h-auto p-0 text-primary font-medium text-xs sm:text-sm">
                         <Info className="mr-1 h-3 w-3" />
                         Attribution Required
                     </Button>
                 )}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md mx-4">
                 <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2">
-                        <span className="text-xl">📋</span> Attribution Requirements
+                    <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
+                        <span className="text-lg sm:text-xl">📋</span> Attribution Requirements
                     </DialogTitle>
-                    <DialogDescription>
+                    <DialogDescription className="text-xs sm:text-sm">
                         Free tier API usage requires a visible backlink to one of our partner sites.
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4 py-4">
                     <div className="space-y-2">
-                        <h4 className="font-medium text-sm">How to Attribute</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <h4 className="font-medium text-xs sm:text-sm">How to Attribute</h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground">
                             Add a visible link on your website or application footer, credits page, or API documentation. The link must be:
                         </p>
-                        <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1 ml-2">
+                        <ul className="text-xs sm:text-sm text-muted-foreground list-disc list-inside space-y-1 ml-2">
                             <li>Publicly visible (not hidden or cloaked)</li>
-                            <li>A dofollow link (no rel="nofollow")</li>
+                            <li>A dofollow link (no rel=&quot;nofollow&quot;)</li>
                             <li>Active for as long as you use the API</li>
                         </ul>
                     </div>
 
                     <div className="space-y-2">
-                        <h4 className="font-medium text-sm">Choose One Link</h4>
+                        <h4 className="font-medium text-xs sm:text-sm">Choose One Link</h4>
                         <div className="space-y-2">
                             {attributionDomains.map((domain) => (
                                 <a
@@ -65,24 +65,24 @@ export function AttributionPopup({ trigger }: AttributionPopupProps) {
                                     href={domain.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent transition-colors group"
+                                    className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg border bg-card hover:bg-accent transition-colors group"
                                 >
-                                    <div>
-                                        <p className="font-medium text-sm group-hover:text-primary transition-colors">
+                                    <div className="min-w-0">
+                                        <p className="font-medium text-xs sm:text-sm group-hover:text-primary transition-colors truncate">
                                             {domain.name}
                                         </p>
-                                        <p className="text-xs text-muted-foreground">{domain.description}</p>
+                                        <p className="text-xs text-muted-foreground truncate">{domain.description}</p>
                                     </div>
-                                    <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                                    <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-2" />
                                 </a>
                             ))}
                         </div>
                     </div>
 
                     <div className="space-y-2 pt-2 border-t">
-                        <h4 className="font-medium text-sm">Example Attribution</h4>
-                        <div className="bg-muted p-3 rounded-md">
-                            <code className="text-xs">
+                        <h4 className="font-medium text-xs sm:text-sm">Example Attribution</h4>
+                        <div className="bg-muted p-2.5 sm:p-3 rounded-md overflow-x-auto">
+                            <code className="text-[10px] sm:text-xs whitespace-nowrap">
                                 {`<a href="https://irensaltali.com">Powered by DisposableCheck</a>`}
                             </code>
                         </div>

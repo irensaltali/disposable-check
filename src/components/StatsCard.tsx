@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface StatsCardProps {
   icon: LucideIcon;
@@ -8,9 +9,10 @@ interface StatsCardProps {
   label: string;
   loading?: boolean;
   animate?: boolean;
+  className?: string;
 }
 
-export function StatsCard({ icon: Icon, value, label, loading, animate }: StatsCardProps) {
+export function StatsCard({ icon: Icon, value, label, loading, animate, className }: StatsCardProps) {
   const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
@@ -46,24 +48,24 @@ export function StatsCard({ icon: Icon, value, label, loading, animate }: StatsC
     };
 
     requestAnimationFrame(update);
-  }, [value, animate]);
+  }, [value, animate, displayValue]);
 
   const formattedValue =
     typeof displayValue === "number" ? displayValue.toLocaleString() : displayValue;
 
   return (
-    <Card>
-      <CardContent className="flex items-center gap-4 p-6">
-        <div className="rounded-full bg-primary/10 p-3">
-          <Icon className="h-6 w-6 text-primary" />
+    <Card className={cn("card-hover", className)}>
+      <CardContent className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6">
+        <div className="rounded-full bg-primary/10 p-2.5 sm:p-3 shrink-0">
+          <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           {loading ? (
-            <div className="h-8 w-24 bg-muted animate-pulse rounded" />
+            <div className="h-7 sm:h-8 w-20 sm:w-24 bg-muted animate-pulse rounded" />
           ) : (
-            <p className="text-2xl font-bold">{formattedValue}</p>
+            <p className="text-xl sm:text-2xl font-bold truncate">{formattedValue}</p>
           )}
-          <p className="text-sm text-muted-foreground">{label}</p>
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">{label}</p>
         </div>
       </CardContent>
     </Card>

@@ -86,37 +86,37 @@ const BulkCheck = () => {
 
   return (
     <Layout>
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <h1 className="text-3xl font-bold">Bulk Email Check</h1>
-              <Badge variant="secondary" className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
+      <section className="section-spacing">
+        <div className="container mx-auto container-responsive max-w-4xl">
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
+              <h1 className="text-2xl sm:text-3xl font-bold">Bulk Email Check</h1>
+              <Badge variant="secondary" className="bg-primary-gradient text-primary-foreground border-0 text-xs">
                 <Sparkles className="h-3 w-3 mr-1" />
                 Pro
               </Badge>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               Check multiple email addresses at once. Paste emails or upload a CSV file.
             </p>
           </div>
 
           {/* Pro Feature Overlay Card */}
           {isProFeature && (
-            <Card className="mb-6 border-2 border-dashed border-amber-300 dark:border-amber-700 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30">
-              <CardContent className="py-12">
+            <Card className="mb-4 sm:mb-6 border-2 border-dashed border-primary/30 bg-amber-accent">
+              <CardContent className="py-8 sm:py-12 px-4 sm:px-6">
                 <div className="text-center">
-                  <div className="mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 p-4 w-fit shadow-lg shadow-amber-500/25">
-                    <Lock className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 rounded-full bg-primary-gradient p-3 sm:p-4 w-fit shadow-lg">
+                    <Lock className="h-6 w-6 sm:h-8 sm:w-8 text-primary-foreground" />
                   </div>
-                  <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-2 text-primary-gradient">
                     Bulk Check is a Pro Feature
                   </h2>
-                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                  <p className="text-muted-foreground mb-5 sm:mb-6 max-w-md mx-auto text-sm sm:text-base">
                     Coming soon! Upgrade to Pro to check thousands of emails at once with CSV upload, export, and detailed analytics.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Button disabled className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white border-0">
+                    <Button disabled className="bg-primary-gradient text-primary-foreground border-0">
                       <Sparkles className="mr-2 h-4 w-4" />
                       Coming Soon
                     </Button>
@@ -132,14 +132,14 @@ const BulkCheck = () => {
           )}
 
           {/* Original form - shown but disabled when Pro feature */}
-          <Card className={`mb-6 ${isProFeature ? 'opacity-50 pointer-events-none' : ''}`}>
-            <CardHeader>
-              <CardTitle>Enter Emails</CardTitle>
-              <CardDescription>
+          <Card className={`mb-4 sm:mb-6 ${isProFeature ? 'opacity-50 pointer-events-none' : ''}`}>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-base sm:text-lg">Enter Emails</CardTitle>
+              <CardDescription className="text-sm">
                 Paste email addresses separated by new lines, commas, or semicolons
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 p-4 sm:p-6 pt-0 sm:pt-0">
               <Textarea
                 name="emails"
                 placeholder="email1@example.com&#10;email2@tempmail.com&#10;email3@gmail.com"
@@ -147,9 +147,10 @@ const BulkCheck = () => {
                 onChange={(e) => setEmailInput(e.target.value)}
                 rows={6}
                 disabled={isProFeature}
+                className="text-sm"
               />
-              <div className="flex flex-wrap gap-3">
-                <Button onClick={processEmails} disabled={!emailInput || isProcessing || isProFeature}>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                <Button onClick={processEmails} disabled={!emailInput || isProcessing || isProFeature} className="w-full sm:w-auto">
                   {isProcessing ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -159,7 +160,7 @@ const BulkCheck = () => {
                     "Check Emails"
                   )}
                 </Button>
-                <Button variant="outline" asChild disabled={isProFeature}>
+                <Button variant="outline" asChild disabled={isProFeature} className="w-full sm:w-auto">
                   <label className={`cursor-pointer ${isProFeature ? 'cursor-not-allowed' : ''}`}>
                     <Upload className="mr-2 h-4 w-4" />
                     Upload CSV
@@ -178,49 +179,51 @@ const BulkCheck = () => {
 
           {results.length > 0 && !isProFeature && (
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
+              <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6">
                 <div>
-                  <CardTitle>Results</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-base sm:text-lg">Results</CardTitle>
+                  <CardDescription className="text-sm">
                     {validCount} valid, {disposableCount} disposable, {invalidCount} invalid
                   </CardDescription>
                 </div>
-                <Button variant="outline" size="sm" onClick={exportResults}>
+                <Button variant="outline" size="sm" onClick={exportResults} className="w-full sm:w-auto">
                   <Download className="mr-2 h-4 w-4" />
                   Export CSV
                 </Button>
               </CardHeader>
-              <CardContent>
-                <div className="rounded-md border">
+              <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
+                <div className="rounded-md border overflow-x-auto">
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Domain</TableHead>
-                        <TableHead className="text-right">Status</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Email</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Domain</TableHead>
+                        <TableHead className="text-right text-xs sm:text-sm">Status</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {results.map((result, index) => (
                         <TableRow key={index}>
-                          <TableCell className="font-mono text-sm">
+                          <TableCell className="font-mono text-xs sm:text-sm">
                             {result.email}
                           </TableCell>
-                          <TableCell className="font-mono text-sm text-muted-foreground">
+                          <TableCell className="font-mono text-xs sm:text-sm text-muted-foreground">
                             {result.domain || "-"}
                           </TableCell>
                           <TableCell className="text-right">
                             {!result.isValid ? (
-                              <Badge variant="outline">Invalid</Badge>
+                              <Badge variant="outline" className="text-xs">Invalid</Badge>
                             ) : result.isDisposable ? (
-                              <Badge variant="destructive" className="gap-1">
+                              <Badge variant="destructive" className="gap-1 text-xs">
                                 <XCircle className="h-3 w-3" />
-                                Disposable
+                                <span className="hidden sm:inline">Disposable</span>
+                                <span className="sm:hidden">Disp.</span>
                               </Badge>
                             ) : (
-                              <Badge variant="secondary" className="gap-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                              <Badge variant="secondary" className="gap-1 bg-success text-success-foreground text-xs">
                                 <CheckCircle className="h-3 w-3" />
-                                Valid
+                                <span className="hidden sm:inline">Valid</span>
+                                <span className="sm:hidden">Ok</span>
                               </Badge>
                             )}
                           </TableCell>

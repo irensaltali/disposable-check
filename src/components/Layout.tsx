@@ -25,10 +25,10 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="text-lg font-semibold">DisposableCheck</span>
+        <div className="container mx-auto flex h-14 sm:h-16 items-center justify-between container-responsive">
+          <Link to="/" className="flex items-center gap-2 shrink-0">
+            <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <span className="text-base sm:text-lg font-semibold truncate">DisposableCheck</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -38,7 +38,7 @@ export function Layout({ children }: LayoutProps) {
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-2.5 lg:px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   location.pathname === item.path
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -50,16 +50,16 @@ export function Layout({ children }: LayoutProps) {
           </nav>
 
           {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden h-8 w-8"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+              {mobileMenuOpen ? <X className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" /> : <Menu className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />}
             </Button>
           </div>
         </div>
@@ -88,11 +88,11 @@ export function Layout({ children }: LayoutProps) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t bg-muted/30 py-8 mt-auto">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2026 DisposableCheck. Free disposable email detection tool & API.</p>
-            <div className="flex items-center gap-4">
+      <footer className="border-t bg-muted/30 py-6 sm:py-8 mt-auto">
+        <div className="container mx-auto container-responsive">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+            <p className="text-center sm:text-left">© 2026 DisposableCheck. Free disposable email detection tool & API.</p>
+            <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
               <AttributionPopup
                 trigger={
                   <button className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">

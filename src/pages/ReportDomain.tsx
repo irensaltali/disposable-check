@@ -65,16 +65,16 @@ const ReportDomain = () => {
   if (submitted) {
     return (
       <Layout>
-        <section className="py-12">
-          <div className="container mx-auto px-4 max-w-lg">
+        <section className="section-spacing">
+          <div className="container mx-auto container-responsive max-w-lg">
             <Card>
-              <CardContent className="pt-6">
+              <CardContent className="pt-4 sm:pt-6 px-4 sm:px-6">
                 <div className="text-center">
-                  <div className="mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900/30 p-3 w-fit">
-                    <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  <div className="mx-auto mb-3 sm:mb-4 rounded-full bg-success p-2.5 sm:p-3 w-fit">
+                    <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success-foreground" />
                   </div>
-                  <h2 className="text-xl font-semibold mb-2">Thank You!</h2>
-                  <p className="text-muted-foreground mb-4">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-2">Thank You!</h2>
+                  <p className="text-muted-foreground mb-4 sm:mb-5 text-sm sm:text-base">
                     Your domain report has been submitted for review. Our team will verify it and add it to the database if confirmed.
                   </p>
                   <Button onClick={() => { setSubmitted(false); setDomain(""); setReason(""); }}>
@@ -91,26 +91,26 @@ const ReportDomain = () => {
 
   return (
     <Layout>
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-lg">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">Report a Disposable Domain</h1>
-            <p className="text-muted-foreground">
-              Help improve our database by reporting disposable email domains you've encountered.
+      <section className="section-spacing">
+        <div className="container mx-auto container-responsive max-w-lg">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Report a Disposable Domain</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">
+              Help improve our database by reporting disposable email domains you&apos;ve encountered.
             </p>
           </div>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Submit Domain</CardTitle>
-              <CardDescription>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-base sm:text-lg">Submit Domain</CardTitle>
+              <CardDescription className="text-sm">
                 All submissions are reviewed before being added to our database.
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="domain">Domain Name</Label>
+                  <Label htmlFor="domain" className="text-sm">Domain Name</Label>
                   <Input
                     id="domain"
                     name="domain"
@@ -120,11 +120,12 @@ const ReportDomain = () => {
                     autoComplete="off"
                     spellCheck={false}
                     disabled={loading}
+                    className="text-sm"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="reason">Why is this disposable? (optional)</Label>
+                  <Label htmlFor="reason" className="text-sm">Why is this disposable? (optional)</Label>
                   <Textarea
                     id="reason"
                     name="reason"
@@ -133,14 +134,15 @@ const ReportDomain = () => {
                     onChange={(e) => setReason(e.target.value)}
                     rows={3}
                     disabled={loading}
+                    className="text-sm"
                   />
                 </div>
 
                 {error && (
                   <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
-                    <AlertTitle>Error</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
+                    <AlertTitle className="text-sm">Error</AlertTitle>
+                    <AlertDescription className="text-sm">{error}</AlertDescription>
                   </Alert>
                 )}
 

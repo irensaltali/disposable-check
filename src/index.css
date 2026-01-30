@@ -2,108 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Harvest Color Palette - Warm, earthy, autumn-inspired design system
-   All colors in HSL for easy manipulation */
+/* Consistent Color Palette - Warm, cohesive design system
+   Light mode: Warm sand/beige background (not white)
+   Dark mode: Deep warm brown background
+   Primary: Amber/Orange accent consistent across all pages */
 
 @layer base {
   :root {
-    /* Warm off-white background with subtle cream undertone */
-    --background: 40 33% 98%;
-    --foreground: 25 45% 13%;
+    /* Warm sand/beige background - not white */
+    --background: 38 30% 94%;
+    --foreground: 25 35% 15%;
 
-    /* Cards with warm paper-like feel */
-    --card: 42 40% 97%;
-    --card-foreground: 25 45% 13%;
+    /* Cards: Slightly lighter with warm undertone */
+    --card: 40 25% 96%;
+    --card-foreground: 25 35% 15%;
 
     /* Popovers match cards */
-    --popover: 42 40% 97%;
-    --popover-foreground: 25 45% 13%;
+    --popover: 40 25% 96%;
+    --popover-foreground: 25 35% 15%;
 
-    /* Primary: Rich harvest orange - the hero color */
-    --primary: 24 85% 48%;
-    --primary-foreground: 42 40% 98%;
+    /* Primary: Warm amber - consistent across all pages */
+    --primary: 30 85% 45%;
+    --primary-foreground: 40 30% 98%;
 
-    /* Secondary: Soft wheat tone */
-    --secondary: 38 35% 91%;
-    --secondary-foreground: 25 40% 20%;
+    /* Secondary: Soft warm neutral */
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 25 35% 20%;
 
-    /* Muted: Warm neutral for subtle elements */
-    --muted: 36 25% 92%;
-    --muted-foreground: 25 20% 45%;
+    /* Muted: Subtle warm gray */
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 15% 45%;
 
-    /* Accent: Burnt sienna for interactive highlights */
-    --accent: 18 70% 50%;
-    --accent-foreground: 42 40% 98%;
+    /* Accent: Bright amber for highlights */
+    --accent: 35 80% 50%;
+    --accent-foreground: 40 30% 98%;
 
-    /* Destructive: Deep red for errors/warnings */
-    --destructive: 0 72% 51%;
+    /* Destructive: Deep red */
+    --destructive: 0 65% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders: Warm beige */
-    --border: 35 30% 85%;
-    --input: 35 30% 85%;
-    --ring: 24 85% 48%;
+    /* Borders: Warm taupe */
+    --border: 30 20% 82%;
+    --input: 30 20% 82%;
+    --ring: 30 85% 45%;
 
     --radius: 0.625rem;
 
     /* Sidebar with warm undertones */
-    --sidebar-background: 40 30% 97%;
-    --sidebar-foreground: 25 35% 30%;
-    --sidebar-primary: 24 80% 45%;
-    --sidebar-primary-foreground: 42 40% 98%;
-    --sidebar-accent: 36 30% 93%;
-    --sidebar-accent-foreground: 25 40% 20%;
-    --sidebar-border: 35 25% 88%;
-    --sidebar-ring: 24 85% 48%;
+    --sidebar-background: 38 25% 92%;
+    --sidebar-foreground: 25 30% 25%;
+    --sidebar-primary: 30 85% 45%;
+    --sidebar-primary-foreground: 40 30% 98%;
+    --sidebar-accent: 35 20% 88%;
+    --sidebar-accent-foreground: 25 35% 20%;
+    --sidebar-border: 30 18% 80%;
+    --sidebar-ring: 30 85% 45%;
+
+    /* Custom chart colors for consistency */
+    --chart-1: 30 85% 45%;
+    --chart-2: 25 75% 50%;
+    --chart-3: 35 70% 55%;
+    --chart-4: 40 65% 50%;
+    --chart-5: 20 70% 45%;
   }
 
   .dark {
     /* Deep warm brown background */
-    --background: 25 30% 8%;
+    --background: 25 25% 10%;
     --foreground: 38 25% 92%;
 
     /* Dark cards with warm undertone */
-    --card: 25 28% 11%;
+    --card: 25 22% 13%;
     --card-foreground: 38 25% 92%;
 
     /* Popovers */
-    --popover: 25 28% 11%;
+    --popover: 25 22% 13%;
     --popover-foreground: 38 25% 92%;
 
-    /* Primary: Bright harvest orange for dark mode */
-    --primary: 28 80% 55%;
-    --primary-foreground: 25 30% 8%;
+    /* Primary: Bright amber for dark mode */
+    --primary: 35 85% 55%;
+    --primary-foreground: 25 25% 10%;
 
     /* Secondary: Dark warm brown */
-    --secondary: 25 25% 18%;
-    --secondary-foreground: 38 25% 90%;
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 38 22% 88%;
 
     /* Muted: Subtle warm dark */
-    --muted: 25 22% 16%;
-    --muted-foreground: 35 18% 58%;
+    --muted: 25 18% 16%;
+    --muted-foreground: 35 15% 55%;
 
     /* Accent: Warm amber */
-    --accent: 32 70% 45%;
+    --accent: 35 80% 50%;
     --accent-foreground: 38 25% 92%;
 
     /* Destructive */
-    --destructive: 0 65% 45%;
+    --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
 
     /* Dark mode borders */
-    --border: 25 22% 18%;
-    --input: 25 22% 18%;
-    --ring: 28 80% 55%;
+    --border: 25 18% 20%;
+    --input: 25 18% 20%;
+    --ring: 35 85% 55%;
 
     /* Dark sidebar */
-    --sidebar-background: 25 28% 10%;
-    --sidebar-foreground: 38 22% 88%;
-    --sidebar-primary: 28 75% 52%;
-    --sidebar-primary-foreground: 25 30% 8%;
-    --sidebar-accent: 25 22% 16%;
-    --sidebar-accent-foreground: 38 22% 88%;
-    --sidebar-border: 25 20% 16%;
-    --sidebar-ring: 28 80% 55%;
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 38 20% 85%;
+    --sidebar-primary: 35 80% 55%;
+    --sidebar-primary-foreground: 25 25% 10%;
+    --sidebar-accent: 25 18% 16%;
+    --sidebar-accent-foreground: 38 20% 85%;
+    --sidebar-border: 25 16% 18%;
+    --sidebar-ring: 35 85% 55%;
+
+    /* Custom chart colors for dark mode */
+    --chart-1: 35 85% 55%;
+    --chart-2: 30 80% 60%;
+    --chart-3: 40 75% 55%;
+    --chart-4: 25 70% 60%;
+    --chart-5: 20 75% 50%;
   }
 }
 
@@ -113,7 +129,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -121,22 +137,127 @@
   html {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* Better text rendering */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-/* Custom utility for harvest gradient */
+/* Custom utility classes */
 @layer utilities {
-  .bg-harvest-gradient {
-    background: linear-gradient(135deg, hsl(24, 85%, 48%) 0%, hsl(18, 70%, 50%) 100%);
-  }
-  
-  .bg-harvest-gradient-dark {
-    background: linear-gradient(135deg, hsl(28, 80%, 55%) 0%, hsl(32, 70%, 45%) 100%);
+  /* Primary gradient - consistent across all pages */
+  .bg-primary-gradient {
+    background: linear-gradient(135deg, hsl(30 85% 45%) 0%, hsl(25 75% 50%) 100%);
   }
 
-  .text-harvest-gradient {
-    background: linear-gradient(135deg, hsl(24, 85%, 48%) 0%, hsl(18, 70%, 50%) 100%);
+  .bg-primary-gradient-dark {
+    background: linear-gradient(135deg, hsl(35 85% 55%) 0%, hsl(30 80% 50%) 100%);
+  }
+
+  .text-primary-gradient {
+    background: linear-gradient(135deg, hsl(30 85% 45%) 0%, hsl(25 75% 50%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Secondary gradient for variety */
+  .bg-secondary-gradient {
+    background: linear-gradient(135deg, hsl(35 80% 50%) 0%, hsl(40 70% 55%) 100%);
+  }
+
+  /* Warm card background */
+  .bg-warm-card {
+    background-color: hsl(40 25% 96%);
+  }
+
+  .dark .bg-warm-card {
+    background-color: hsl(25 22% 13%);
+  }
+
+  /* Pro/amber accent backgrounds - consistent */
+  .bg-amber-accent {
+    background-color: hsl(38 92% 50% / 0.1);
+  }
+
+  .dark .bg-amber-accent {
+    background-color: hsl(38 92% 50% / 0.15);
+  }
+
+  .border-amber-accent {
+    border-color: hsl(38 80% 50% / 0.3);
+  }
+
+  .dark .border-amber-accent {
+    border-color: hsl(38 80% 50% / 0.4);
+  }
+
+  /* Success colors - warm green */
+  .text-success {
+    color: hsl(145 55% 35%);
+  }
+
+  .dark .text-success {
+    color: hsl(145 60% 55%);
+  }
+
+  .bg-success {
+    background-color: hsl(145 50% 35% / 0.1);
+  }
+
+  .dark .bg-success {
+    background-color: hsl(145 55% 55% / 0.15);
+  }
+
+  /* Code block styling */
+  .code-block {
+    @apply bg-muted p-4 rounded-md text-sm overflow-x-auto font-mono;
+  }
+
+  /* Responsive container padding */
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Focus visible styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Selection colors */
+::selection {
+  background-color: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
 }

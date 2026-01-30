@@ -142,46 +142,46 @@ const GetApiKey = () => {
   if (submitted) {
     return (
       <Layout>
-        <section className="py-12">
-          <div className="container mx-auto px-4 max-w-lg">
+        <section className="section-spacing">
+          <div className="container mx-auto container-responsive max-w-lg">
             <Card>
-              <CardContent className="pt-6">
-                <div className="text-center mb-6">
-                  <div className="mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900/30 p-3 w-fit">
-                    <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+              <CardContent className="pt-4 sm:pt-6 px-4 sm:px-6">
+                <div className="text-center mb-5 sm:mb-6">
+                  <div className="mx-auto mb-3 sm:mb-4 rounded-full bg-success p-2.5 sm:p-3 w-fit">
+                    <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success-foreground" />
                   </div>
-                  <h2 className="text-xl font-semibold mb-2">Check Your Email!</h2>
-                  <p className="text-muted-foreground">
-                    We've sent your API key to <strong>{email}</strong>.
+                  <h2 className="text-lg sm:text-xl font-semibold mb-2">Check Your Email!</h2>
+                  <p className="text-muted-foreground text-sm sm:text-base">
+                    We&apos;ve sent your API key to <strong>{email}</strong>.
                   </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    If you don't see it, check your spam folder.
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2">
+                    If you don&apos;t see it, check your spam folder.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="border rounded-lg p-4 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
-                    <h4 className="font-medium mb-2 text-amber-800 dark:text-amber-200 flex items-center gap-2">
-                      <span className="text-lg">⚠️</span> Attribution Required
+                  <div className="border rounded-lg p-3 sm:p-4 bg-amber-accent border-amber-accent">
+                    <h4 className="font-medium mb-2 text-foreground flex items-center gap-2 text-sm">
+                      <span className="text-base sm:text-lg">⚠️</span> Attribution Required
                       <AttributionPopup
                         trigger={
-                          <button className="text-xs bg-amber-200 dark:bg-amber-800 px-2 py-0.5 rounded-full hover:bg-amber-300 dark:hover:bg-amber-700 transition-colors">
+                          <button className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full hover:bg-primary/30 transition-colors">
                             <Info className="h-3 w-3 inline mr-1" />Details
                           </button>
                         }
                       />
                     </h4>
-                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-3">
                       Free tier usage requires a visible backlink to one of the following sites on your application:
                     </p>
-                    <ul className="text-sm space-y-1 text-amber-800 dark:text-amber-200">
+                    <ul className="text-xs sm:text-sm space-y-1 text-foreground">
                       <li>• <a href="https://irensaltali.com" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">irensaltali.com</a></li>
                       <li>• <a href="https://sendfax.pro" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">sendfax.pro</a></li>
                       <li>• <a href="https://zenrise.app" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">zenrise.app</a></li>
                     </ul>
                   </div>
 
-                  <div className="text-center text-sm text-muted-foreground">
+                  <div className="text-center text-xs sm:text-sm text-muted-foreground">
                     <p>Free tier: 1,000 requests/day (attribution required)</p>
                   </div>
                 </div>
@@ -195,29 +195,29 @@ const GetApiKey = () => {
 
   return (
     <Layout>
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-lg">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">Get Your Free API Key</h1>
-            <p className="text-muted-foreground">
+      <section className="section-spacing">
+        <div className="container mx-auto container-responsive max-w-lg">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Get Your Free API Key</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">
               Start detecting disposable emails in your application today.
             </p>
           </div>
 
           <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                 <Key className="h-5 w-5" />
                 Request API Key
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm">
                 Enter your email to receive your free API key instantly.
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email" className="text-sm">Email Address</Label>
                   <Input
                     id="email"
                     type="email"
@@ -228,6 +228,7 @@ const GetApiKey = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={loading}
+                    className="text-sm"
                   />
                 </div>
 
@@ -235,7 +236,7 @@ const GetApiKey = () => {
                 <div ref={turnstileRef} className="flex justify-center" />
 
                 {error && (
-                  <p className="text-sm text-red-600 dark:text-red-400 text-center">
+                  <p className="text-sm text-destructive text-center">
                     {error}
                   </p>
                 )}
@@ -258,14 +259,14 @@ const GetApiKey = () => {
             </CardContent>
           </Card>
 
-          <div className="mt-8 grid gap-4 text-center">
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-1">Free Forever</h3>
-              <p className="text-sm text-muted-foreground">1,000 API calls/day with attribution</p>
+          <div className="mt-6 sm:mt-8 grid gap-3 sm:gap-4 text-center grid-cols-1 sm:grid-cols-2">
+            <div className="border rounded-lg p-3 sm:p-4 bg-card">
+              <h3 className="font-semibold mb-1 text-sm sm:text-base">Free Forever</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">1,000 API calls/day with attribution</p>
             </div>
-            <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-1">Simple Attribution</h3>
-              <p className="text-sm text-muted-foreground">Just add a backlink to get started</p>
+            <div className="border rounded-lg p-3 sm:p-4 bg-card">
+              <h3 className="font-semibold mb-1 text-sm sm:text-base">Simple Attribution</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">Just add a backlink to get started</p>
             </div>
           </div>
         </div>

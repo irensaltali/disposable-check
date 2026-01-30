@@ -81,18 +81,24 @@ const Research = () => {
         setIsDark(checkDark());
     }, [theme]);
 
-    // Colors
-    // Light: Indigo-600 (#4F46E5), Dark: Blue-400 (#60A5FA)
-    const primaryColor = isDark ? '#60A5FA' : '#4F46E5';
-    const primaryBg = isDark ? 'rgba(96, 165, 250, 0.1)' : 'rgba(79, 70, 229, 0.1)';
+    // Consistent amber/orange color palette for charts
+    // Light mode colors
+    const primaryColor = isDark ? '#F59E0B' : '#D97706';      // Amber-500 / Amber-600
+    const secondaryColor = isDark ? '#FBBF24' : '#F59E0B';   // Amber-400 / Amber-500
+    const accentColor = isDark ? '#F97316' : '#EA580C';      // Orange-500 / Orange-600
+    const mutedColor = isDark ? '#A1A1AA' : '#71717A';       // Zinc-400 / Zinc-500
+    const dangerColor = isDark ? '#EF4444' : '#DC2626';      // Red-500 / Red-600
+    const successColor = isDark ? '#22C55E' : '#16A34A';     // Green-500 / Green-600
+    
+    // Chart backgrounds with opacity
+    const primaryBg = isDark ? 'rgba(245, 158, 11, 0.15)' : 'rgba(217, 119, 6, 0.1)';
 
     // Chart 1: Donut - List Composition
-
     const compositionData = {
         labels: ['Valid Corporate/Personal', 'Disposable (Temporary)', 'Spam Traps / Invalid'],
         datasets: [{
             data: [70, 25, 5],
-            backgroundColor: [primaryColor, '#F43F5E', '#94A3B8'], // Primary, Rose, Slate
+            backgroundColor: [primaryColor, dangerColor, mutedColor],
             borderWidth: 0,
             hoverOffset: 4
         }]
@@ -104,7 +110,11 @@ const Research = () => {
         plugins: {
             legend: {
                 position: 'bottom' as const,
-                labels: { padding: 20, usePointStyle: true }
+                labels: { 
+                    padding: 20, 
+                    usePointStyle: true,
+                    color: isDark ? '#E4E4E7' : '#3F3F46'
+                }
             },
             tooltip: commonTooltipConfig
         },
@@ -124,13 +134,13 @@ const Research = () => {
             {
                 label: 'Clean List',
                 data: [1.2, 28, 4.5],
-                backgroundColor: '#06B6D4', // Cyan
+                backgroundColor: primaryColor,
                 borderRadius: 4
             },
             {
                 label: 'List with DEAs',
                 data: [12.5, 14, 1.8],
-                backgroundColor: '#F43F5E', // Rose
+                backgroundColor: dangerColor,
                 borderRadius: 4
             }
         ]
@@ -142,12 +152,35 @@ const Research = () => {
         scales: {
             y: {
                 beginAtZero: true,
-                title: { display: true, text: 'Percentage (%)' }
+                title: { 
+                    display: true, 
+                    text: 'Percentage (%)',
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                ticks: {
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                grid: {
+                    color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            x: {
+                ticks: {
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                grid: {
+                    display: false
+                }
             }
         },
         plugins: {
             tooltip: commonTooltipConfig,
-            legend: { position: 'top' as const }
+            legend: { 
+                position: 'top' as const,
+                labels: {
+                    color: isDark ? '#E4E4E7' : '#3F3F46'
+                }
+            }
         }
     };
 
@@ -162,7 +195,7 @@ const Research = () => {
             fill: true,
             tension: 0.4,
             pointRadius: 4,
-            pointBackgroundColor: '#fff',
+            pointBackgroundColor: isDark ? '#27272A' : '#FFFFFF',
             pointBorderColor: primaryColor
         }]
     };
@@ -175,24 +208,49 @@ const Research = () => {
                 beginAtZero: false,
                 min: 40,
                 max: 100,
-                title: { display: true, text: 'Sender Score' }
+                title: { 
+                    display: true, 
+                    text: 'Sender Score',
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                ticks: {
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                grid: {
+                    color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            x: {
+                ticks: {
+                    color: isDark ? '#A1A1AA' : '#71717A'
+                },
+                grid: {
+                    color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)'
+                }
             }
         },
         plugins: {
             tooltip: commonTooltipConfig,
+            legend: {
+                labels: {
+                    color: isDark ? '#E4E4E7' : '#3F3F46'
+                }
+            },
             annotation: {
                 annotations: {
                     line1: {
                         type: 'line' as const,
                         yMin: 80,
                         yMax: 80,
-                        borderColor: '#F43F5E',
+                        borderColor: dangerColor,
                         borderWidth: 2,
                         borderDash: [6, 6],
                         label: {
                             content: 'Safe Threshold',
                             display: true,
-                            position: 'start' as const
+                            position: 'start' as const,
+                            color: isDark ? '#E4E4E7' : '#3F3F46',
+                            backgroundColor: isDark ? 'rgba(39, 39, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)'
                         }
                     }
                 }
@@ -213,13 +271,13 @@ const Research = () => {
             {
                 label: 'Static Blacklists',
                 data: [60, 20, 50],
-                backgroundColor: '#94A3B8', // Slate-400
+                backgroundColor: mutedColor,
                 barPercentage: 0.5
             },
             {
                 label: 'Real-time API',
                 data: [99, 95, 90],
-                backgroundColor: '#22D3EE', // Cyan Bright
+                backgroundColor: primaryColor,
                 barPercentage: 0.5
             }
         ]
@@ -233,85 +291,99 @@ const Research = () => {
             x: {
                 beginAtZero: true,
                 max: 100,
-                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                ticks: { color: '#ccc' }
+                grid: { 
+                    color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)' 
+                },
+                ticks: { 
+                    color: isDark ? '#A1A1AA' : '#71717A' 
+                }
             },
             y: {
                 grid: { display: false },
-                ticks: { color: '#fff' }
+                ticks: { 
+                    color: isDark ? '#E4E4E7' : '#3F3F46' 
+                }
             }
         },
         plugins: {
             tooltip: commonTooltipConfig,
             legend: {
-                labels: { color: '#fff' }
+                labels: { 
+                    color: isDark ? '#E4E4E7' : '#3F3F46' 
+                }
             }
         }
     };
 
     return (
         <Layout>
-            {/* Header / Hero */}
-            <header className="bg-gradient-to-r from-indigo-600 to-cyan-500 text-white py-16 px-4">
+            {/* Header / Hero - Updated to use amber gradient */}
+            <header className="bg-primary-gradient dark:bg-primary-gradient-dark text-white py-12 sm:py-16 lg:py-20 px-4">
                 <div className="max-w-6xl mx-auto text-center">
-                    <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                    <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                         Research Report: Email Security
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">The Disposable Email Epidemic</h1>
-                    <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed">
-                        Why "burn" addresses are silently draining marketing budgets, skewing analytics, and damaging sender reputation.
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight">
+                        The Disposable Email Epidemic
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed px-4">
+                        Why &quot;burn&quot; addresses are silently draining marketing budgets, skewing analytics, and damaging sender reputation.
                     </p>
                 </div>
             </header>
 
             {/* Main Content Grid */}
-            <main className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 gap-12 text-slate-800 dark:text-slate-200">
+            <main className="max-w-6xl mx-auto px-4 py-8 sm:py-12 lg:py-16 grid grid-cols-1 gap-8 sm:gap-12">
 
                 {/* Section 1: Definition & Context */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
                     <div>
-                        <h2 className="text-3xl font-bold mb-4 border-l-4 border-indigo-600 dark:border-indigo-400 pl-4 text-gray-800 dark:text-white">What is a Disposable Email?</h2>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-4 border-l-4 border-primary pl-4">
+                            What is a Disposable Email?
+                        </h2>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
                             A Disposable Email Address (DEA) is a temporary mailbox created instantly for a single purpose—usually to bypass registration requirements without revealing a real identity.
                         </p>
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                            While useful for user privacy, they are catastrophic for businesses. They self-destruct after a short period (10 minutes to a few days), leaving your database filled with "ghost" users who never engage, never buy, and bounce your future emails.
+                        <p className="text-muted-foreground leading-relaxed">
+                            While useful for user privacy, they are catastrophic for businesses. They self-destruct after a short period (10 minutes to a few days), leaving your database filled with &quot;ghost&quot; users who never engage, never buy, and bounce your future emails.
                         </p>
                     </div>
 
                     {/* Process Diagram */}
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800">
-                        <h3 className="text-center font-bold text-gray-500 dark:text-gray-400 mb-6 uppercase text-sm tracking-wider">The Lifecycle of a Fake User</h3>
-                        <div className="flex flex-col md:flex-row items-center justify-between text-center space-y-4 md:space-y-0">
+                    <div className="bg-card p-4 sm:p-6 rounded-xl shadow-sm border">
+                        <h3 className="text-center font-bold text-muted-foreground mb-4 sm:mb-6 uppercase text-xs sm:text-sm tracking-wider">
+                            The Lifecycle of a Fake User
+                        </h3>
+                        <div className="flex flex-col sm:flex-row items-center justify-between text-center space-y-4 sm:space-y-0">
 
                             <div className="flex flex-col items-center group">
-                                <div className="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-2xl mb-2 group-hover:bg-indigo-600 dark:group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl sm:text-2xl mb-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                                     ⚡
                                 </div>
-                                <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">Created</span>
-                                <span className="text-xs text-gray-400">Instantly generated</span>
+                                <span className="font-semibold text-sm">Created</span>
+                                <span className="text-xs text-muted-foreground">Instantly generated</span>
                             </div>
 
-                            <ArrowRight className="hidden md:block w-6 h-6 text-gray-300" />
-                            <ArrowDown className="md:hidden w-6 h-6 text-gray-300" />
+                            <ArrowRight className="hidden sm:block w-6 h-6 text-muted-foreground/50" />
+                            <ArrowDown className="sm:hidden w-6 h-6 text-muted-foreground/50" />
 
                             <div className="flex flex-col items-center group">
-                                <div className="w-12 h-12 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-300 flex items-center justify-center text-2xl mb-2 group-hover:bg-cyan-600 dark:group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center text-xl sm:text-2xl mb-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                                     🔓
                                 </div>
-                                <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">Used</span>
-                                <span className="text-xs text-gray-400">Access content/trial</span>
+                                <span className="font-semibold text-sm">Used</span>
+                                <span className="text-xs text-muted-foreground">Access content/trial</span>
                             </div>
 
-                            <ArrowRight className="hidden md:block w-6 h-6 text-gray-300" />
-                            <ArrowDown className="md:hidden w-6 h-6 text-gray-300" />
+                            <ArrowRight className="hidden sm:block w-6 h-6 text-muted-foreground/50" />
+                            <ArrowDown className="sm:hidden w-6 h-6 text-muted-foreground/50" />
 
                             <div className="flex flex-col items-center group">
-                                <div className="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 flex items-center justify-center text-2xl mb-2 group-hover:bg-rose-600 dark:group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-destructive/10 text-destructive flex items-center justify-center text-xl sm:text-2xl mb-2 group-hover:bg-destructive group-hover:text-destructive-foreground transition-colors">
                                     💣
                                 </div>
-                                <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">Destroyed</span>
-                                <span className="text-xs text-gray-400">Bounces permanently</span>
+                                <span className="font-semibold text-sm">Destroyed</span>
+                                <span className="text-xs text-muted-foreground">Bounces permanently</span>
                             </div>
 
                         </div>
@@ -319,64 +391,64 @@ const Research = () => {
                 </section>
 
                 {/* Section 2: Data Composition */}
-                <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border-t-8 border-cyan-500">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <section className="bg-card rounded-2xl shadow-sm p-4 sm:p-6 lg:p-8 border-t-4 border-primary">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                         <div>
-                            <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">The Invisible Clutter</h2>
-                            <p className="text-gray-600 dark:text-gray-300 mb-6">
+                            <h2 className="text-xl sm:text-2xl font-bold mb-4">The Invisible Clutter</h2>
+                            <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base">
                                 Research suggests that in unverified B2C signup lists, a significant portion of users employ DEAs. This distorts your understanding of your customer base. If 20% of your list is fake, your calculated conversion rates are artificially depressed, leading to incorrect strategic decisions.
                             </p>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-lg text-center">
-                                    <span className="block text-3xl font-bold text-indigo-600 dark:text-indigo-400">~28%</span>
-                                    <span className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">B2C Abuse Rate</span>
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                                <div className="bg-muted p-3 sm:p-4 rounded-lg text-center">
+                                    <span className="block text-2xl sm:text-3xl font-bold text-primary">~28%</span>
+                                    <span className="text-xs text-muted-foreground uppercase font-semibold">B2C Abuse Rate</span>
                                 </div>
-                                <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-lg text-center">
-                                    <span className="block text-3xl font-bold text-rose-500 dark:text-rose-400">0%</span>
-                                    <span className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">LTV of DEA User</span>
+                                <div className="bg-muted p-3 sm:p-4 rounded-lg text-center">
+                                    <span className="block text-2xl sm:text-3xl font-bold text-destructive">0%</span>
+                                    <span className="text-xs text-muted-foreground uppercase font-semibold">LTV of DEA User</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Chart Container */}
                         <div className="flex flex-col justify-center items-center w-full">
-                            <h3 className="text-center font-semibold text-gray-700 dark:text-gray-200 mb-4">Typical Unverified List Composition</h3>
-                            <div className="w-full h-80 max-w-[500px]">
+                            <h3 className="text-center font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Typical Unverified List Composition</h3>
+                            <div className="w-full h-64 sm:h-72 lg:h-80 max-w-[400px]">
                                 <Doughnut data={compositionData} options={compositionOptions} />
                             </div>
-                            <p className="text-center text-xs text-gray-400 mt-4">Source: Aggregated Industry Data Simulations</p>
+                            <p className="text-center text-xs text-muted-foreground mt-3 sm:mt-4">Source: Aggregated Industry Data Simulations</p>
                         </div>
                     </div>
                 </section>
 
                 {/* Section 3: The Consequences */}
                 <section>
-                    <div className="mb-8 text-center max-w-3xl mx-auto">
-                        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-3">The Cost of Inaction</h2>
-                        <p className="text-gray-600 dark:text-gray-300">
-                            Accepting disposable emails isn't just about "dead leads." It actively harms your infrastructure. High bounce rates signal to Email Service Providers (Gmail, Outlook) that you are a spammer.
+                    <div className="mb-6 sm:mb-8 text-center max-w-3xl mx-auto">
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-3">The Cost of Inaction</h2>
+                        <p className="text-muted-foreground text-sm sm:text-base">
+                            Accepting disposable emails isn&apos;t just about &quot;dead leads.&quot; It actively harms your infrastructure. High bounce rates signal to Email Service Providers (Gmail, Outlook) that you are a spammer.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                         {/* Bar Chart Container */}
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-md">
-                            <div className="mb-4">
-                                <h3 className="text-xl font-bold text-gray-800 dark:text-white">Impact on Campaign Metrics</h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Comparing clean lists vs. lists polluted with DEAs.</p>
+                        <div className="bg-card p-4 sm:p-6 rounded-xl shadow-sm border">
+                            <div className="mb-3 sm:mb-4">
+                                <h3 className="text-lg sm:text-xl font-bold">Impact on Campaign Metrics</h3>
+                                <p className="text-xs sm:text-sm text-muted-foreground">Comparing clean lists vs. lists polluted with DEAs.</p>
                             </div>
-                            <div className="h-80 w-full">
+                            <div className="h-64 sm:h-72 lg:h-80 w-full">
                                 <Bar data={impactData} options={impactOptions} />
                             </div>
                         </div>
 
                         {/* Line Chart Container */}
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-md">
-                            <div className="mb-4">
-                                <h3 className="text-xl font-bold text-gray-800 dark:text-white">Sender Reputation Decay</h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Sender score drops rapidly as hard bounce rates increase.</p>
+                        <div className="bg-card p-4 sm:p-6 rounded-xl shadow-sm border">
+                            <div className="mb-3 sm:mb-4">
+                                <h3 className="text-lg sm:text-xl font-bold">Sender Reputation Decay</h3>
+                                <p className="text-xs sm:text-sm text-muted-foreground">Sender score drops rapidly as hard bounce rates increase.</p>
                             </div>
-                            <div className="h-80 w-full">
+                            <div className="h-64 sm:h-72 lg:h-80 w-full">
                                 <Line data={reputationData} options={reputationOptions} />
                             </div>
                         </div>
@@ -384,57 +456,60 @@ const Research = () => {
                 </section>
 
                 {/* Section 4: Key Risks Cards */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {/* Card 1 */}
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow hover:shadow-lg transition-shadow border-l-4 border-rose-500">
-                        <div className="text-4xl mb-4">💸</div>
-                        <h3 className="font-bold text-lg mb-2 dark:text-white">Free Trial Abuse</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                            Users create infinite accounts to exploit "New User" coupons or free SaaS trials (Freemium abuse), driving up server costs with zero revenue.
+                    <div className="bg-card p-5 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-destructive">
+                        <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💸</div>
+                        <h3 className="font-bold text-base sm:text-lg mb-2">Free Trial Abuse</h3>
+                        <p className="text-sm text-muted-foreground">
+                            Users create infinite accounts to exploit &quot;New User&quot; coupons or free SaaS trials (Freemium abuse), driving up server costs with zero revenue.
                         </p>
                     </div>
                     {/* Card 2 */}
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow hover:shadow-lg transition-shadow border-l-4 border-indigo-500 dark:border-indigo-400">
-                        <div className="text-4xl mb-4">📊</div>
-                        <h3 className="font-bold text-lg mb-2 dark:text-white">Skewed Analytics</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                            Marketing teams optimize for "signups" rather than "customers." DEAs inflate signup numbers, hiding the true acquisition cost (CAC).
+                    <div className="bg-card p-5 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-primary">
+                        <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">📊</div>
+                        <h3 className="font-bold text-base sm:text-lg mb-2">Skewed Analytics</h3>
+                        <p className="text-sm text-muted-foreground">
+                            Marketing teams optimize for &quot;signups&quot; rather than &quot;customers.&quot; DEAs inflate signup numbers, hiding the true acquisition cost (CAC).
                         </p>
                     </div>
                     {/* Card 3 */}
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow hover:shadow-lg transition-shadow border-l-4 border-cyan-500">
-                        <div className="text-4xl mb-4">🛡️</div>
-                        <h3 className="font-bold text-lg mb-2 dark:text-white">Security Vulnerabilities</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <div className="bg-card p-5 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-accent sm:col-span-2 lg:col-span-1">
+                        <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🛡️</div>
+                        <h3 className="font-bold text-base sm:text-lg mb-2">Security Vulnerabilities</h3>
+                        <p className="text-sm text-muted-foreground">
                             Malicious actors use DEAs to hide their tracks while testing credit cards (carding), injecting scripts, or spamming your forums.
                         </p>
                     </div>
                 </section>
 
                 {/* Section 5: The Solution */}
-                <section className="bg-gray-900 text-white rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                <section className="bg-card rounded-3xl p-6 sm:p-8 lg:p-12 relative overflow-hidden border">
                     {/* Decorative circle */}
-                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-indigo-600 rounded-full opacity-20 filter blur-3xl"></div>
+                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 sm:w-64 sm:h-64 bg-primary/10 rounded-full opacity-50 filter blur-3xl"></div>
 
-                    <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                         <div>
-                            <h2 className="text-3xl font-bold mb-6">Stop Them at the Gate</h2>
-                            <p className="text-gray-300 mb-6 leading-relaxed">
-                                The only effective defense is <strong>real-time detection</strong>. You must identify if an email domain belongs to a disposable provider <em>before</em> the user completes registration.
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Stop Them at the Gate</h2>
+                            <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                                The only effective defense is <strong className="text-foreground">real-time detection</strong>. You must identify if an email domain belongs to a disposable provider <em>before</em> the user completes registration.
                             </p>
-                            <p className="text-gray-300 mb-8">
+                            <p className="text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">
                                 Manual blacklists fail because hundreds of new disposable domains are created daily. You need an automated API that tracks these changes instantly.
                             </p>
 
-                            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                                <h4 className="font-semibold text-cyan-400 mb-2 text-sm uppercase">Recommended Solution</h4>
-                                <p className="text-white text-lg font-medium mb-4">
+                            <div className="bg-muted p-4 sm:p-6 rounded-lg border">
+                                <h4 className="font-semibold text-primary mb-2 text-xs sm:text-sm uppercase">Recommended Solution</h4>
+                                <p className="text-foreground text-base sm:text-lg font-medium mb-3 sm:mb-4">
                                     DisposableCheck API
                                 </p>
-                                <p className="text-sm text-gray-400 mb-6">
+                                <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
                                     A robust, real-time API specifically designed to distinguish legitimate users from temporary bots.
                                 </p>
-                                <a href="/" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-cyan-400 hover:bg-cyan-500 transition-colors">
+                                <a 
+                                    href="/" 
+                                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                                >
                                     Try the Solution
                                     <span className="ml-2">→</span>
                                 </a>
@@ -442,9 +517,9 @@ const Research = () => {
                         </div>
 
                         {/* Solution Comparison Chart */}
-                        <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm border border-white/10">
-                            <h3 className="text-center font-semibold text-gray-200 mb-4">Effectiveness: Static Lists vs. API</h3>
-                            <div className="h-80 w-full">
+                        <div className="bg-muted/50 p-4 sm:p-6 rounded-xl border">
+                            <h3 className="text-center font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Effectiveness: Static Lists vs. API</h3>
+                            <div className="h-64 sm:h-72 lg:h-80 w-full">
                                 <Bar data={solutionData} options={solutionOptions} />
                             </div>
                         </div>

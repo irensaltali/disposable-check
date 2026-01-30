@@ -1,29 +1,28 @@
 import { Layout } from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AttributionPopup } from "@/components/AttributionPopup";
-import { Separator } from "@/components/ui/separator";
 
 const Terms = () => {
     return (
         <Layout>
-            <section className="py-12">
-                <div className="container mx-auto px-4 max-w-4xl">
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold mb-2">Terms of Service</h1>
-                        <p className="text-muted-foreground">
+            <section className="section-spacing">
+                <div className="container mx-auto container-responsive max-w-4xl">
+                    <div className="text-center mb-6 sm:mb-8">
+                        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Terms of Service</h1>
+                        <p className="text-muted-foreground text-sm sm:text-base">
                             Last updated: January 26, 2026
                         </p>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                         {/* Acceptance of Terms */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>1. Acceptance of Terms</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">1. Acceptance of Terms</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
-                                    By accessing or using the DisposableCheck API and services ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use our Service.
+                                    By accessing or using the DisposableCheck API and services (&quot;Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, do not use our Service.
                                 </p>
                                 <p>
                                     We reserve the right to modify these Terms at any time. Continued use of the Service after any changes constitutes your acceptance of the new Terms.
@@ -33,10 +32,10 @@ const Terms = () => {
 
                         {/* API Usage */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>2. API Usage</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">2. API Usage</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     The DisposableCheck API is provided for the purpose of detecting disposable and temporary email addresses. You agree to:
                                 </p>
@@ -51,23 +50,23 @@ const Terms = () => {
                         </Card>
 
                         {/* Attribution Requirements */}
-                        <Card className="border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
+                        <Card className="border-primary/30 bg-amber-accent">
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                                     3. Attribution Requirements (Free Tier)
                                     <AttributionPopup />
                                 </CardTitle>
-                                <CardDescription>
+                                <CardDescription className="text-sm">
                                     Required for all free tier API users
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     Free tier API access requires visible attribution in the form of a backlink to one of our designated domains. Attribution must be:
                                 </p>
                                 <ul className="list-disc list-inside space-y-1 ml-2">
                                     <li>Publicly visible on your website or application</li>
-                                    <li>A dofollow link (rel="nofollow" is not permitted)</li>
+                                    <li>A dofollow link (rel=&quot;nofollow&quot; is not permitted)</li>
                                     <li>Maintained for the duration of your API usage</li>
                                 </ul>
                                 <div className="pt-2">
@@ -85,20 +84,20 @@ const Terms = () => {
                         </Card>
 
                         {/* Liability Waiver */}
-                        <Card className="border-red-200 dark:border-red-900">
-                            <CardHeader>
-                                <CardTitle>4. Limitation of Liability & Disclaimer</CardTitle>
-                                <CardDescription>
+                        <Card className="border-destructive/30">
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">4. Limitation of Liability & Disclaimer</CardTitle>
+                                <CardDescription className="text-sm">
                                     Important legal disclaimers
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
-                                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg p-4">
-                                    <p className="font-medium text-red-800 dark:text-red-200 mb-2">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
+                                <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 sm:p-4">
+                                    <p className="font-medium text-destructive mb-2 text-sm">
                                         DISCLAIMER OF WARRANTIES
                                     </p>
-                                    <p className="text-red-700 dark:text-red-300">
-                                        THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                                    <p className="text-destructive/90 text-xs sm:text-sm">
+                                        THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                                     </p>
                                 </div>
 
@@ -112,14 +111,14 @@ const Terms = () => {
                                     <li>The completeness or timeliness of our domain database</li>
                                 </ul>
 
-                                <div className="bg-muted/50 rounded-lg p-4 mt-4">
-                                    <p className="font-medium text-foreground mb-2">
+                                <div className="bg-muted/50 rounded-lg p-3 sm:p-4 mt-4">
+                                    <p className="font-medium text-foreground mb-2 text-sm">
                                         LIMITATION OF LIABILITY
                                     </p>
-                                    <p>
+                                    <p className="text-xs sm:text-sm">
                                         IN NO EVENT SHALL DISPOSABLECHECK, ITS OWNERS, OPERATORS, AFFILIATES, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:
                                     </p>
-                                    <ul className="list-disc list-inside space-y-1 ml-2 mt-2">
+                                    <ul className="list-disc list-inside space-y-1 ml-2 mt-2 text-xs sm:text-sm">
                                         <li>Your use or inability to use the Service</li>
                                         <li>Any unauthorized access to or alteration of your data</li>
                                         <li>False positives or false negatives in email detection</li>
@@ -128,7 +127,7 @@ const Terms = () => {
                                     </ul>
                                 </div>
 
-                                <p className="pt-2">
+                                <p className="pt-2 text-xs sm:text-sm">
                                     Our total liability for any claims arising from or related to the Service shall not exceed the amount you paid us (if any) in the twelve (12) months preceding the claim.
                                 </p>
                             </CardContent>
@@ -136,12 +135,12 @@ const Terms = () => {
 
                         {/* Indemnification */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>5. Indemnification</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">5. Indemnification</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
-                                    You agree to indemnify, defend, and hold harmless DisposableCheck and its owners, operators, affiliates, officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorneys' fees) arising out of or in any way connected with:
+                                    You agree to indemnify, defend, and hold harmless DisposableCheck and its owners, operators, affiliates, officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorneys&apos; fees) arising out of or in any way connected with:
                                 </p>
                                 <ul className="list-disc list-inside space-y-1 ml-2">
                                     <li>Your access to or use of the Service</li>
@@ -154,10 +153,10 @@ const Terms = () => {
 
                         {/* Data & Privacy */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>6. Data & Privacy</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">6. Data & Privacy</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     We collect minimal data necessary to provide the Service:
                                 </p>
@@ -174,10 +173,10 @@ const Terms = () => {
 
                         {/* Termination */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>7. Termination</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">7. Termination</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     We reserve the right to suspend or terminate your access to the Service at any time, with or without cause, with or without notice. Upon termination:
                                 </p>
@@ -191,10 +190,10 @@ const Terms = () => {
 
                         {/* Governing Law */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>8. Governing Law</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">8. Governing Law</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground space-y-3">
+                            <CardContent className="text-sm text-muted-foreground space-y-3 p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles. Any disputes arising from these Terms or the Service shall be resolved through binding arbitration.
                                 </p>
@@ -203,10 +202,10 @@ const Terms = () => {
 
                         {/* Contact */}
                         <Card>
-                            <CardHeader>
-                                <CardTitle>9. Contact</CardTitle>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-base sm:text-lg">9. Contact</CardTitle>
                             </CardHeader>
-                            <CardContent className="text-sm text-muted-foreground">
+                            <CardContent className="text-sm text-muted-foreground p-4 sm:p-6 pt-0 sm:pt-0">
                                 <p>
                                     For questions about these Terms, please contact us at{" "}
                                     <a href="mailto:legal@disposablecheck.com" className="text-primary hover:underline">
