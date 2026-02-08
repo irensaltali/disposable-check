@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
 import { Layout } from "@/components/Layout";
 import {
@@ -268,9 +269,9 @@ const ValueProposition = () => {
     const plotlyLayout = {
         margin: { l: 0, r: 0, b: 0, t: 0 },
         scene: {
-            xaxis: { title: 'Fraud Blocked %', color: isDark ? '#A1A1AA' : '#4B5563' },
-            yaxis: { title: 'Domain Health', color: isDark ? '#A1A1AA' : '#4B5563' },
-            zaxis: { title: 'Marketing ROI', color: isDark ? '#A1A1AA' : '#4B5563' },
+            xaxis: { title: { text: 'Fraud Blocked %' }, color: isDark ? '#A1A1AA' : '#4B5563' },
+            yaxis: { title: { text: 'Domain Health' }, color: isDark ? '#A1A1AA' : '#4B5563' },
+            zaxis: { title: { text: 'Marketing ROI' }, color: isDark ? '#A1A1AA' : '#4B5563' },
             bgcolor: 'transparent'
         },
         paper_bgcolor: 'rgba(0,0,0,0)',
@@ -292,12 +293,12 @@ const ValueProposition = () => {
                         The <span className="underline decoration-white/30 underline-offset-8">Disposable Email Checker</span> Advantage
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed px-4">
-                        Elevating email security and ROI through Deep Verification (MX & SMTP) and real-time fraud prevention.
+                        Elevating email security with advanced <strong className="font-semibold text-white">disposable email detection</strong> and real-time fraud prevention. Stop temp mail in its tracks.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
-                        <span className="bg-white text-indigo-700 px-6 py-2 rounded-full font-bold shadow-md">Deep Verification</span>
-                        <span className="bg-white text-pink-600 px-6 py-2 rounded-full font-bold shadow-md">Fraud Protection</span>
-                        <span className="bg-white text-cyan-700 px-6 py-2 rounded-full font-bold shadow-md">Cost Efficiency</span>
+                        <span className="bg-white text-indigo-700 px-6 py-2 rounded-full font-bold shadow-md">Check Disposable Email Address</span>
+                        <span className="bg-white text-pink-600 px-6 py-2 rounded-full font-bold shadow-md">Detect Disposable Emails</span>
+                        <span className="bg-white text-cyan-700 px-6 py-2 rounded-full font-bold shadow-md">Temp Mail Detector</span>
                     </div>
                 </div>
             </header>
@@ -308,7 +309,7 @@ const ValueProposition = () => {
                 <section className="md:col-span-2 bg-card rounded-xl shadow-md p-8 border-l-8 border-pink-500">
                     <h2 className="text-3xl font-bold text-foreground mb-4">1. The Cost of False Users</h2>
                     <p className="text-muted-foreground text-lg mb-6">
-                        Disposable emails are the primary tool for <strong>freemium abuse</strong>, credit card fraud, and marketing database inflation. A robust Disposable Email Checker identifies these temporary inboxes instantly, protecting your bottom line.
+                        Disposable emails are the primary tool for <strong>freemium abuse</strong>, credit card fraud, and marketing database inflation. A robust <strong>temporary email detector</strong> identifies these temporary inboxes instantly, protecting your bottom line. We provide reliable <Link to="/bulk" className="text-primary hover:underline font-medium">bulkcheck</Link> capabilities to clean your existing lists.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -348,7 +349,7 @@ const ValueProposition = () => {
                 <section className="bg-card rounded-xl shadow-md p-6 border-t-4 border-indigo-500">
                     <h2 className="text-2xl font-bold text-foreground mb-4">2. Deep Verification vs. Regex</h2>
                     <p className="text-muted-foreground mb-6">
-                        Standard regex checks only look for "@" symbols. <strong>Deep Verification</strong> goes layers deeper, validating the domain's ability to receive mail and the specific user's existence.
+                        Standard regex checks only look for "@" symbols. <strong>Deep Verification</strong> goes layers deeper, validating the domain's ability to receive mail and the specific user's existence. Our <strong>temp mail detector</strong> functionality outperforms basic syntax checks.
                     </p>
                     <div className="relative w-full h-[350px]">
                         <Radar data={radarData} options={radarOptions} />
@@ -430,25 +431,78 @@ const ValueProposition = () => {
                     </div>
                 </section>
 
-                {/* Section 5 */}
                 <section className="md:col-span-2 bg-card rounded-xl shadow-md p-8 border-b-8 border-purple-600">
                     <h2 className="text-3xl font-bold text-foreground mb-4">5. The Fraud-Reputation Nexus</h2>
-                    <p className="text-muted-foreground text-lg mb-6">
-                        There is a direct correlation between preventing disposable signups, reducing fraud, and maintaining high inbox placement.
-                    </p>
-                    <div className="w-full h-[500px] border rounded-lg shadow-inner bg-muted/10 relative">
-                        {/* Plotly Chart */}
-                        <Plot
-                            data={plotlyData}
-                            layout={plotlyLayout}
-                            useResizeHandler
-                            style={{ width: "100%", height: "100%" }}
-                            config={{ displayModeBar: false }}
-                        />
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                        <div className="lg:col-span-2 flex flex-col justify-center">
+                            <p className="text-muted-foreground text-lg mb-6">
+                                There is a direct correlation between preventing disposable signups, reducing fraud, and maintaining high inbox placement.
+                            </p>
+                            <div className="space-y-4">
+                                <p className="text-muted-foreground leading-relaxed">
+                                    The interactive 3D scatter plot visualizes the synergistic relationship between three mission-critical metrics:
+                                </p>
+                                <ul className="space-y-3">
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-2 h-2 mt-2 rounded-full bg-purple-500 shrink-0" />
+                                        <p className="text-sm"><strong>Fraud Blocked %:</strong> The efficiency of your temporary email detector in filtering out bad actors at the point of entry.</p>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-2 h-2 mt-2 rounded-full bg-indigo-500 shrink-0" />
+                                        <p className="text-sm"><strong>Domain Health:</strong> Your global sender reputation score, which directly impacts whether your emails land in the Inbox or Spam folder.</p>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-2 h-2 mt-2 rounded-full bg-pink-500 shrink-0" />
+                                        <p className="text-sm"><strong>Marketing ROI:</strong> The ultimate business outcome—higher conversion rates and lower acquisition costs by focusing solely on real users.</p>
+                                    </li>
+                                </ul>
+                                <p className="text-xs text-muted-foreground italic mt-4">
+                                    Notice how the highest ROI points (brightest markers) cluster where both Fraud Blocking and Domain Health are optimized.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="lg:col-span-3">
+                            <div className="w-full h-[500px] border rounded-lg shadow-inner bg-muted/10 relative overflow-hidden">
+                                <Plot
+                                    data={plotlyData}
+                                    layout={plotlyLayout}
+                                    useResizeHandler
+                                    style={{ width: "100%", height: "100%" }}
+                                    config={{ displayModeBar: false }}
+                                />
+                            </div>
+                            <p className="text-center text-xs text-muted-foreground mt-3 uppercase tracking-widest font-semibold opacity-70">
+                                Grab and rotate the graph to explore the 3D data space
+                            </p>
+                        </div>
                     </div>
-                    <p className="text-center text-sm text-muted-foreground mt-2">
-                        Interactive Analysis: Rotate to explore relationship between Fraud Blocks, Domain Health, and ROI.
-                    </p>
+                </section>
+
+                {/* FAQ Section */}
+                <section className="bg-card rounded-xl shadow-md p-8 border-t-8 border-primary md:col-span-2">
+                    <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Frequently Asked Questions</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 className="text-xl font-bold text-primary mb-2">Why use a disposable email checker?</h3>
+                            <p className="text-muted-foreground mb-4">
+                                Using a <strong>disposable email checker</strong> protects your business from fake users, reduces bounce rates, and ensures your marketing budget is spent on real potential customers. It is essential for maintaining high sender reputation.
+                            </p>
+                            <h3 className="text-xl font-bold text-primary mb-2">Can this tool detect all temporary emails?</h3>
+                            <p className="text-muted-foreground mb-4">
+                                Our advanced <strong>temporary email detector</strong> updates in real-time to identify new domains used by disposable email providers, offering superior protection compared to static lists.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-bold text-primary mb-2">Do you support bulk operations?</h3>
+                            <p className="text-muted-foreground mb-4">
+                                Yes, our <Link to="/bulk" className="text-indigo-500 hover:underline">bulkcheck</Link> feature allows you to verify lists of emails efficiently, saving you time and ensuring your entire database is clean.
+                            </p>
+                            <h3 className="text-xl font-bold text-primary mb-2">How do I check a disposable email address?</h3>
+                            <p className="text-muted-foreground mb-4">
+                                Simply verify the address through our API or web interface. We instantly <strong>check disposable email address</strong> validity and risk status via Deep Verification. Learn more in our <Link to="/the-disposable-email-epidemic" className="text-indigo-500 hover:underline">research report</Link>.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
             </main>

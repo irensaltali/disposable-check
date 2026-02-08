@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
 import { Layout } from "@/components/Layout";
 import {
@@ -89,7 +90,7 @@ const Research = () => {
     const mutedColor = isDark ? '#A1A1AA' : '#71717A';       // Zinc-400 / Zinc-500
     const dangerColor = isDark ? '#EF4444' : '#DC2626';      // Red-500 / Red-600
     const successColor = isDark ? '#22C55E' : '#16A34A';     // Green-500 / Green-600
-    
+
     // Chart backgrounds with opacity
     const primaryBg = isDark ? 'rgba(245, 158, 11, 0.15)' : 'rgba(217, 119, 6, 0.1)';
 
@@ -110,8 +111,8 @@ const Research = () => {
         plugins: {
             legend: {
                 position: 'bottom' as const,
-                labels: { 
-                    padding: 20, 
+                labels: {
+                    padding: 20,
                     usePointStyle: true,
                     color: isDark ? '#E4E4E7' : '#3F3F46'
                 }
@@ -152,8 +153,8 @@ const Research = () => {
         scales: {
             y: {
                 beginAtZero: true,
-                title: { 
-                    display: true, 
+                title: {
+                    display: true,
                     text: 'Percentage (%)',
                     color: isDark ? '#A1A1AA' : '#71717A'
                 },
@@ -175,7 +176,7 @@ const Research = () => {
         },
         plugins: {
             tooltip: commonTooltipConfig,
-            legend: { 
+            legend: {
                 position: 'top' as const,
                 labels: {
                     color: isDark ? '#E4E4E7' : '#3F3F46'
@@ -208,8 +209,8 @@ const Research = () => {
                 beginAtZero: false,
                 min: 40,
                 max: 100,
-                title: { 
-                    display: true, 
+                title: {
+                    display: true,
                     text: 'Sender Score',
                     color: isDark ? '#A1A1AA' : '#71717A'
                 },
@@ -291,25 +292,25 @@ const Research = () => {
             x: {
                 beginAtZero: true,
                 max: 100,
-                grid: { 
-                    color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)' 
+                grid: {
+                    color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
                 },
-                ticks: { 
-                    color: isDark ? '#A1A1AA' : '#71717A' 
+                ticks: {
+                    color: isDark ? '#A1A1AA' : '#71717A'
                 }
             },
             y: {
                 grid: { display: false },
-                ticks: { 
-                    color: isDark ? '#E4E4E7' : '#3F3F46' 
+                ticks: {
+                    color: isDark ? '#E4E4E7' : '#3F3F46'
                 }
             }
         },
         plugins: {
             tooltip: commonTooltipConfig,
             legend: {
-                labels: { 
-                    color: isDark ? '#E4E4E7' : '#3F3F46' 
+                labels: {
+                    color: isDark ? '#E4E4E7' : '#3F3F46'
                 }
             }
         }
@@ -324,7 +325,7 @@ const Research = () => {
                         Research Report: Email Security
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight">
-                        The Disposable Email Epidemic
+                        The <span className="underline decoration-white/30 underline-offset-8">Disposable Email</span> Epidemic
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed px-4">
                         Why &quot;burn&quot; addresses are silently draining marketing budgets, skewing analytics, and damaging sender reputation.
@@ -345,7 +346,7 @@ const Research = () => {
                             A Disposable Email Address (DEA) is a temporary mailbox created instantly for a single purpose—usually to bypass registration requirements without revealing a real identity.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
-                            While useful for user privacy, they are catastrophic for businesses. They self-destruct after a short period (10 minutes to a few days), leaving your database filled with &quot;ghost&quot; users who never engage, never buy, and bounce your future emails.
+                            While useful for user privacy, they are catastrophic for businesses. A <strong>temporary email detector</strong> is crucial because these emails self-destruct after a short period (10 minutes to a few days), leaving your database filled with &quot;ghost&quot; users who never engage, never buy, and bounce your future emails.
                         </p>
                     </div>
 
@@ -426,7 +427,7 @@ const Research = () => {
                     <div className="mb-6 sm:mb-8 text-center max-w-3xl mx-auto">
                         <h2 className="text-2xl sm:text-3xl font-bold mb-3">The Cost of Inaction</h2>
                         <p className="text-muted-foreground text-sm sm:text-base">
-                            Accepting disposable emails isn&apos;t just about &quot;dead leads.&quot; It actively harms your infrastructure. High bounce rates signal to Email Service Providers (Gmail, Outlook) that you are a spammer.
+                            Accepting disposable emails isn&apos;t just about &quot;dead leads.&quot; It actively harms your infrastructure. Failing to <strong>detect disposable emails</strong> leads to high bounce rates, signaling to Email Service Providers (Gmail, Outlook) that you are a spammer.
                         </p>
                     </div>
 
@@ -506,13 +507,13 @@ const Research = () => {
                                 <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
                                     A robust, real-time API specifically designed to distinguish legitimate users from temporary bots.
                                 </p>
-                                <a 
-                                    href="/" 
+                                <Link
+                                    to="/"
                                     className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                                 >
                                     Try the Solution
                                     <span className="ml-2">→</span>
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -525,8 +526,35 @@ const Research = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* FAQ Section */}
+                <section className="bg-card rounded-2xl shadow-sm p-6 sm:p-8 lg:p-12 border-t-4 border-secondary">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Common Questions About Email Security</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 className="font-bold text-lg mb-2">How accurate is a disposable email checker?</h3>
+                            <p className="text-muted-foreground text-sm mb-4">
+                                Modern APIs like DisposableCheck use real-time MX and SMTP verification to prevent false positives. This is far more accurate than static lists when you need to <strong>check disposable email address</strong> validity.
+                            </p>
+                            <h3 className="font-bold text-lg mb-2">Can I clean my existing list?</h3>
+                            <p className="text-muted-foreground text-sm mb-4">
+                                Yes. The <Link to="/bulk" className="text-primary hover:underline font-medium">bulkcheck</Link> feature allows you to upload large CSV files and identify temporary addresses in your historical data.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-2">Why isn't regex enough?</h3>
+                            <p className="text-muted-foreground text-sm mb-4">
+                                Regex only checks formatting. It cannot <strong>detect disposable emails</strong> that use custom domains or look legitimate. Only a dedicated <strong>temp mail detector</strong> with deep network checks can catch these.
+                            </p>
+                            <h3 className="font-bold text-lg mb-2">Does this help with sender reputation?</h3>
+                            <p className="text-muted-foreground text-sm mb-4">
+                                Absolutely. By blocking bounces before they happen, you protect your domain's health. Learn more about the <Link to="/value-proposition" className="text-primary hover:underline font-medium">value proposition</Link> of deep verification.
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </main>
-        </Layout>
+        </Layout >
     );
 };
 
