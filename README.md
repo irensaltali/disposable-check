@@ -64,7 +64,7 @@ Check multiple email addresses at once with our bulk checking feature.
 ### Use the API
 ```bash
 curl -X GET \
-  'https://disposablecheck.irensaltali.com/api/v1/check?email=test@tempmail.com' \
+  'https://disposablecheck.irensaltali.com/api/v1/check?email=test@tempmail.com&check_reachable=true' \
   -H 'X-API-Key: your_api_key_here'
 ```
 
@@ -75,9 +75,15 @@ curl -X GET \
   "domain": "tempmail.com",
   "is_disposable": true,
   "is_valid_format": true,
-  "checked_at": "2026-01-27T10:30:00Z"
+  "checked_at": "2026-01-27T10:30:00Z",
+  "reacher": {
+      "is_reachable": "safe",
+      "mx": { "accepts_mail": true, "records": [...] },
+      "smtp": { "can_connect_smtp": true, "has_full_inbox": false, ... }
+  }
 }
 ```
+> **Note**: Enable deep verification (SMTP/MX checks) by adding `&check_reachable=true` to your request. Powered by [reacherhq/backend](https://github.com/reacherhq/backend).
 
 ### Get Your Free API Key
 Visit [disposablecheck.irensaltali.com/get-api-key](https://disposablecheck.irensaltali.com/get-api-key) to get your free API key instantly!
