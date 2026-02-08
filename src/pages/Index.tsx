@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Layout } from "@/components/Layout";
 import { EmailChecker } from "@/components/EmailChecker";
 import { StatsCard } from "@/components/StatsCard";
@@ -56,10 +56,10 @@ const Index = () => {
     };
   }, [refreshKey]);
 
-  const handleEmailChecked = () => {
+  const handleEmailChecked = useCallback(() => {
     // Force a refresh of the stats when an email is manually checked
-    setRefreshKey(prev => prev + 1);
-  };
+    setRefreshKey((prev) => prev + 1);
+  }, []);
 
   // Use API stats if available, otherwise fall back to mock data
   const displayStats = stats

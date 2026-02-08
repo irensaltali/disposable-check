@@ -33,7 +33,7 @@ export function AttributionPopup({ trigger }: AttributionPopupProps) {
                     </Button>
                 )}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md mx-4">
+            <DialogContent className="sm:max-w-md w-[calc(100%-2rem)] rounded-lg">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
                         <span className="text-lg sm:text-xl">📋</span> Attribution Requirements
@@ -82,7 +82,7 @@ export function AttributionPopup({ trigger }: AttributionPopupProps) {
                     <div className="space-y-2 pt-2 border-t">
                         <h4 className="font-medium text-xs sm:text-sm">Example Attribution</h4>
                         <div className="bg-muted p-2.5 sm:p-3 rounded-md overflow-x-auto">
-                            <code className="text-[10px] sm:text-xs whitespace-nowrap">
+                            <code className="text-[10px] sm:text-xs whitespace-pre-wrap break-all">
                                 {`<a href="https://irensaltali.com">Powered by DisposableCheck</a>`}
                             </code>
                         </div>

@@ -31,9 +31,9 @@ const ApiDocs = () => {
               <CardContent className="space-y-4 p-4 sm:p-6 pt-0 sm:pt-0">
                 <div>
                   <h4 className="font-medium mb-2 text-sm">Endpoint</h4>
-                  <code className="code-block text-xs">
+                  <pre className="code-block text-xs whitespace-pre-wrap break-all">
                     GET https://disposablecheck.irensaltali.com/api/v1/check?email={"{email}"}&check_reachable=true
-                  </code>
+                  </pre>
                 </div>
 
                 <div>
@@ -134,7 +134,7 @@ print(data)  # Full response`}
               <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
                 <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
                   <div className="border rounded-lg p-4 bg-amber-accent border-amber-accent">
-                    <h4 className="font-semibold mb-2 flex items-center gap-2 text-sm">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2 text-sm flex-wrap">
                       Free Tier
                       <AttributionPopup
                         trigger={

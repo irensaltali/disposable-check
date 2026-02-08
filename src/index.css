@@ -213,7 +213,7 @@
 
   /* Code block styling */
   .code-block {
-    @apply bg-muted p-4 rounded-md text-sm overflow-x-auto font-mono;
+    @apply block bg-muted p-4 rounded-md text-sm overflow-x-auto font-mono;
   }
 
   /* Responsive container padding */
