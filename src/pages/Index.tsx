@@ -106,6 +106,17 @@ const Index = () => {
               loading={loading}
               className="sm:col-span-2 lg:col-span-1"
             />
+
+          </div>
+
+          <div className="flex justify-center mt-12 mb-8">
+            <a href="https://www.buymeacoffee.com/irensaltali" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                alt="Buy Me A Coffee"
+                className="h-[50px] w-auto sm:h-[60px]"
+              />
+            </a>
           </div>
         </div>
       </section>
