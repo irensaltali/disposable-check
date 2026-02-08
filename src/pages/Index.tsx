@@ -75,11 +75,14 @@ const Index = () => {
       <section className="py-10 sm:py-16 lg:py-20">
         <div className="container mx-auto container-responsive">
           <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80 mb-4">
+              New: Deep Verification
+            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
               Disposable Email Detector
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Instantly check if an email address is from a disposable or temporary email provider. Free to use, with a public API.
+              Instantly check if an email address is from a disposable provider, verify MX records, and check SMTP connectivity. Free to use, with a public API.
             </p>
           </div>
 

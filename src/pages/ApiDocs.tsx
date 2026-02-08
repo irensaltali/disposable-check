@@ -32,8 +32,15 @@ const ApiDocs = () => {
                 <div>
                   <h4 className="font-medium mb-2 text-sm">Endpoint</h4>
                   <code className="code-block text-xs">
-                    GET https://disposablecheck.irensaltali.com/api/v1/check?email={"{email}"}
+                    GET https://disposablecheck.irensaltali.com/api/v1/check?email={"{email}"}&check_reachable=true
                   </code>
+                </div>
+
+                <div>
+                  <h4 className="font-medium mb-2 text-sm">Query Parameters</h4>
+                  <div className="text-sm text-muted-foreground mb-2">
+                    <span className="font-mono text-xs bg-muted px-1 rounded">check_reachable</span> (optional, boolean): Set to true to enable deep verification (MX & SMTP). Defaults to false.
+                  </div>
                 </div>
 
                 <div>
@@ -51,7 +58,12 @@ const ApiDocs = () => {
   "domain": "tempmail.com",
   "is_disposable": true,
   "is_valid_format": true,
-  "checked_at": "2026-01-15T10:30:00Z"
+  "checked_at": "2026-01-15T10:30:00Z",
+  "reacher": {
+    "is_reachable": "safe",
+    "mx": { "accepts_mail": true, "records": [...] },
+    "smtp": { "can_connect_smtp": true, "has_full_inbox": false, ... }
+  }
 }`}
                   </pre>
                 </div>
@@ -75,7 +87,7 @@ const ApiDocs = () => {
                   <TabsContent value="javascript" className="mt-4">
                     <pre className="code-block text-xs">
                       {`const response = await fetch(
-  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com',
+  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com&check_reachable=true',
   {
     headers: {
       'X-API-Key': 'your_api_key_here'
@@ -84,7 +96,7 @@ const ApiDocs = () => {
 );
 
 const data = await response.json();
-console.log(data.is_disposable); // true or false`}
+console.log(data);`}
                     </pre>
                   </TabsContent>
                   <TabsContent value="python" className="mt-4">
@@ -93,18 +105,18 @@ console.log(data.is_disposable); // true or false`}
 
 response = requests.get(
     'https://disposablecheck.irensaltali.com/api/v1/check',
-    params={'email': 'user@example.com'},
+    params={'email': 'user@example.com', 'check_reachable': 'true'},
     headers={'X-API-Key': 'your_api_key_here'}
 )
 
 data = response.json()
-print(data['is_disposable'])  # True or False`}
+print(data)  # Full response`}
                     </pre>
                   </TabsContent>
                   <TabsContent value="curl" className="mt-4">
                     <pre className="code-block text-xs">
                       {`curl -X GET \\
-  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com' \\
+  'https://disposablecheck.irensaltali.com/api/v1/check?email=user@example.com&check_reachable=true' \\
   -H 'X-API-Key: your_api_key_here'`}
                     </pre>
                   </TabsContent>
