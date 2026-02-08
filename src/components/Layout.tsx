@@ -104,7 +104,10 @@ export function Layout({ children }: LayoutProps) {
                 Terms of Service
               </Link>
               <Link to="/the-disposable-email-epidemic" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="The Disposable Email Epidemic">
-                Research
+                Disposable Email Research
+              </Link>
+              <Link to="/value-proposition" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="The Disposable Email Checker Advantage">
+                Value Proposition
               </Link>
             </div>
           </div>
