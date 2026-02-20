@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { EmailChecker } from "@/components/EmailChecker";
 import { StatsCard } from "@/components/StatsCard";
 import { mockStats } from "@/lib/mockData";
@@ -12,6 +13,14 @@ interface Stats {
   total_disposable_domains: number;
   community_reports: number;
 }
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "DisposableCheck",
+  url: "https://disposablecheck.com",
+  logo: "https://disposablecheck.com/logo.png",
+};
 
 const Index = () => {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -72,6 +81,11 @@ const Index = () => {
 
   return (
     <Layout>
+      <SeoHead
+        title="Check Disposable Email Address Instantly | DisposableCheck"
+        description="Instantly check if an email address is disposable, temporary, or unreachable. Free disposable email detector with deep MX and SMTP verification."
+        schema={organizationSchema}
+      />
       <section className="py-10 sm:py-16 lg:py-20">
         <div className="container mx-auto container-responsive">
           <div className="text-center mb-8 sm:mb-10 lg:mb-12">
@@ -79,7 +93,7 @@ const Index = () => {
               New: Deep Verification
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
-              Disposable Email Detector
+              Check Disposable Email Address Instantly
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
               Instantly check if an email address is from a disposable provider, verify MX records, and check SMTP connectivity. Free to use, with a public API.

@@ -1,10 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Shield, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AttributionPopup } from "@/components/AttributionPopup";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { buildBreadcrumbs } from "@/lib/seo";
 
 const navItems = [
   { path: "/", label: "Check Email" },
@@ -21,6 +30,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const breadcrumbItems = buildBreadcrumbs(location.pathname);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -85,6 +95,32 @@ export function Layout({ children }: LayoutProps) {
           </nav>
         )}
       </header>
+
+      <div className="border-b bg-muted/20">
+        <div className="container mx-auto container-responsive py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              {breadcrumbItems.map((item, index) => {
+                const isLast = index === breadcrumbItems.length - 1;
+                return (
+                  <Fragment key={item.path}>
+                    <BreadcrumbItem>
+                      {isLast ? (
+                        <BreadcrumbPage>{item.name}</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink asChild>
+                          <Link to={item.path}>{item.name}</Link>
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                    {!isLast && <BreadcrumbSeparator />}
+                  </Fragment>
+                );
+              })}
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       <main className="flex-1">{children}</main>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import {
     Chart as ChartJS,
     ArcElement,
@@ -35,6 +36,66 @@ ChartJS.register(
     Title,
     Filler
 );
+
+const valuePropositionArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Why Use a Disposable Email Checker for Fraud Prevention?",
+    description: "Understand the business impact of disposable emails and how deep verification improves deliverability, security, and ROI.",
+    mainEntityOfPage: "https://disposablecheck.com/value-proposition",
+    author: {
+        "@type": "Organization",
+        name: "DisposableCheck",
+    },
+    publisher: {
+        "@type": "Organization",
+        name: "DisposableCheck",
+        logo: {
+            "@type": "ImageObject",
+            url: "https://disposablecheck.com/logo.png",
+        },
+    },
+    image: "https://disposablecheck.com/og-image.png",
+};
+
+const valuePropositionFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "Why use a disposable email checker?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "It blocks fake signups, reduces hard bounces, and protects sender reputation and marketing spend.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "Can this tool detect all temporary emails?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "It continuously updates disposable domain intelligence and verifies domain and mailbox behavior in real time.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "Do you support bulk operations?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Bulk checking workflows let teams validate large email lists efficiently.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "How do I check a disposable email address?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Use the web checker or API to validate format, disposable risk, and reachability via deep verification.",
+            },
+        },
+    ],
+};
 
 const ValueProposition = () => {
     const { theme } = useTheme();
@@ -282,6 +343,12 @@ const ValueProposition = () => {
 
     return (
         <Layout>
+            <SeoHead
+                title="Why Use a Disposable Email Checker for Fraud Prevention? | DisposableCheck"
+                description="See how disposable email detection reduces fraud, improves inbox placement, and increases ROI with deep verification."
+                type="article"
+                schema={[valuePropositionArticleSchema, valuePropositionFaqSchema]}
+            />
             {/* Header */}
             {/* Header / Hero - Updated to use amber gradient */}
             <header className="bg-primary-gradient dark:bg-primary-gradient-dark text-white py-12 sm:py-16 lg:py-20 px-4">
@@ -290,7 +357,7 @@ const ValueProposition = () => {
                         Value Proposition
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight">
-                        The <span className="underline decoration-white/30 underline-offset-8">Disposable Email Checker</span> Advantage
+                        Why Use a <span className="underline decoration-white/30 underline-offset-8">Disposable Email Checker</span> for Fraud Prevention?
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed px-4">
                         Elevating email security with advanced <strong className="font-semibold text-white">disposable email detection</strong> and real-time fraud prevention. Stop temp mail in its tracks.

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "@/components/ThemeProvider";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import {
     Chart as ChartJS,
     ArcElement,
@@ -34,6 +35,66 @@ ChartJS.register(
     Filler,
     annotationPlugin
 );
+
+const researchArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "What Is a Disposable Email and How Do You Detect It?",
+    description: "A research-backed guide to disposable email abuse, sender reputation damage, and practical detection strategies.",
+    mainEntityOfPage: "https://disposablecheck.com/the-disposable-email-epidemic",
+    author: {
+        "@type": "Organization",
+        name: "DisposableCheck",
+    },
+    publisher: {
+        "@type": "Organization",
+        name: "DisposableCheck",
+        logo: {
+            "@type": "ImageObject",
+            url: "https://disposablecheck.com/logo.png",
+        },
+    },
+    image: "https://disposablecheck.com/og-image.png",
+};
+
+const researchFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "How accurate is a disposable email checker?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Real-time MX and SMTP verification significantly improves accuracy compared with static blocklists.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "Can I clean my existing list?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Bulk email checks can process historical CSV lists and identify disposable or invalid addresses.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "Why isn't regex enough?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Regex validates format only. It cannot confirm mailbox reachability or whether a domain is temporary.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "Does this help with sender reputation?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Blocking disposable and unreachable addresses lowers bounce rates and protects domain reputation.",
+            },
+        },
+    ],
+};
 
 const Research = () => {
     // --- Utility: Label Wrapping Logic ---
@@ -318,6 +379,12 @@ const Research = () => {
 
     return (
         <Layout>
+            <SeoHead
+                title="What Is a Disposable Email and How Do You Detect It? | DisposableCheck"
+                description="Learn what disposable emails are, why they hurt sender reputation, and how to detect temporary addresses before signup."
+                type="article"
+                schema={[researchArticleSchema, researchFaqSchema]}
+            />
             {/* Header / Hero - Updated to use amber gradient */}
             <header className="bg-primary-gradient dark:bg-primary-gradient-dark text-white py-12 sm:py-16 lg:py-20 px-4">
                 <div className="max-w-6xl mx-auto text-center">
@@ -325,7 +392,7 @@ const Research = () => {
                         Research Report: Email Security
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight">
-                        The <span className="underline decoration-white/30 underline-offset-8">Disposable Email</span> Epidemic
+                        What Is a <span className="underline decoration-white/30 underline-offset-8">Disposable Email</span> and How Do You Detect It?
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 leading-relaxed px-4">
                         Why &quot;burn&quot; addresses are silently draining marketing budgets, skewing analytics, and damaging sender reputation.

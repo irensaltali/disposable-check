@@ -1,14 +1,19 @@
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AttributionPopup } from "@/components/AttributionPopup";
 
 const Terms = () => {
     return (
         <Layout>
+            <SeoHead
+                title="Disposable Email API Terms of Service | DisposableCheck"
+                description="Read the DisposableCheck Terms of Service for API usage, attribution requirements, and legal terms."
+            />
             <section className="section-spacing">
                 <div className="container mx-auto container-responsive max-w-4xl">
                     <div className="text-center mb-6 sm:mb-8">
-                        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Terms of Service</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Disposable Email API Terms of Service</h1>
                         <p className="text-muted-foreground text-sm sm:text-base">
                             Last updated: January 26, 2026
                         </p>

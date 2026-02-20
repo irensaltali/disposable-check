@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -65,6 +66,10 @@ const ReportDomain = () => {
   if (submitted) {
     return (
       <Layout>
+        <SeoHead
+          title="Report Disposable Email Domain | DisposableCheck"
+          description="Report suspicious or temporary email domains to improve DisposableCheck's disposable email domain database."
+        />
         <section className="section-spacing">
           <div className="container mx-auto container-responsive max-w-lg">
             <Card>
@@ -73,7 +78,7 @@ const ReportDomain = () => {
                   <div className="mx-auto mb-3 sm:mb-4 rounded-full bg-success p-2.5 sm:p-3 w-fit">
                     <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success-foreground" />
                   </div>
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">Thank You!</h2>
+                  <h1 className="text-lg sm:text-xl font-semibold mb-2">Disposable Domain Report Submitted</h1>
                   <p className="text-muted-foreground mb-4 sm:mb-5 text-sm sm:text-base">
                     Your domain report has been submitted for review. Our team will verify it and add it to the database if confirmed.
                   </p>
@@ -91,10 +96,14 @@ const ReportDomain = () => {
 
   return (
     <Layout>
+      <SeoHead
+        title="Report Disposable Email Domain | DisposableCheck"
+        description="Report suspicious or temporary email domains to improve DisposableCheck's disposable email domain database."
+      />
       <section className="section-spacing">
         <div className="container mx-auto container-responsive max-w-lg">
           <div className="text-center mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Report a Disposable Domain</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Report a Disposable Email Domain</h1>
             <p className="text-muted-foreground text-sm sm:text-base">
               Help improve our database by reporting disposable email domains you&apos;ve encountered.
             </p>

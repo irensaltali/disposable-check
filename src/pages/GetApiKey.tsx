@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -142,6 +143,10 @@ const GetApiKey = () => {
   if (submitted) {
     return (
       <Layout>
+        <SeoHead
+          title="Get Free Disposable Email API Key | DisposableCheck"
+          description="Create your free DisposableCheck API key and start detecting disposable emails with 1,000 daily requests."
+        />
         <section className="section-spacing">
           <div className="container mx-auto container-responsive max-w-lg">
             <Card>
@@ -150,7 +155,7 @@ const GetApiKey = () => {
                   <div className="mx-auto mb-3 sm:mb-4 rounded-full bg-success p-2.5 sm:p-3 w-fit">
                     <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success-foreground" />
                   </div>
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">Check Your Email!</h2>
+                  <h1 className="text-lg sm:text-xl font-semibold mb-2">Your Free API Key Is on the Way</h1>
                   <p className="text-muted-foreground text-sm sm:text-base">
                     We&apos;ve sent your API key to <strong>{email}</strong>.
                   </p>
@@ -195,10 +200,14 @@ const GetApiKey = () => {
 
   return (
     <Layout>
+      <SeoHead
+        title="Get Free Disposable Email API Key | DisposableCheck"
+        description="Create your free DisposableCheck API key and start detecting disposable emails with 1,000 daily requests."
+      />
       <section className="section-spacing">
         <div className="container mx-auto container-responsive max-w-lg">
           <div className="text-center mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Get Your Free API Key</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Get Free Disposable Email API Key</h1>
             <p className="text-muted-foreground text-sm sm:text-base">
               Start detecting disposable emails in your application today.
             </p>

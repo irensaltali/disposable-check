@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -8,10 +9,14 @@ import { Info } from "lucide-react";
 const ApiDocs = () => {
   return (
     <Layout>
+      <SeoHead
+        title="Disposable Email Verification API Documentation | DisposableCheck"
+        description="Read API docs for disposable email detection, deep verification, authentication, and language examples."
+      />
       <section className="section-spacing">
         <div className="container mx-auto container-responsive max-w-4xl">
           <div className="text-center mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-2">API Documentation</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">Disposable Email Verification API Documentation</h1>
             <p className="text-muted-foreground text-sm sm:text-base">
               Integrate disposable email detection into your application with our free API.
             </p>

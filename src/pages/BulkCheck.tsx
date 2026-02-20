@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
+import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,11 +87,15 @@ const BulkCheck = () => {
 
   return (
     <Layout>
+      <SeoHead
+        title="Bulk Check Disposable Emails from CSV | DisposableCheck"
+        description="Bulk check disposable email addresses from CSV or pasted lists. Validate and flag temporary domains in one workflow."
+      />
       <section className="section-spacing">
         <div className="container mx-auto container-responsive max-w-4xl">
           <div className="text-center mb-6 sm:mb-8">
             <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
-              <h1 className="text-2xl sm:text-3xl font-bold">Bulk Email Check</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold">Bulk Check Disposable Emails from CSV</h1>
               <Badge variant="secondary" className="bg-primary-gradient text-primary-foreground border-0 text-xs">
                 <Sparkles className="h-3 w-3 mr-1" />
                 Pro
