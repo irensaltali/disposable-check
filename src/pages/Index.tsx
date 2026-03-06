@@ -18,8 +18,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "DisposableCheck",
-  url: "https://disposablecheck.com",
-  logo: "https://disposablecheck.com/logo.png",
+  url: "https://disposablecheck.irensaltali.com/",
+  logo: "https://disposablecheck.irensaltali.com//logo.png",
 };
 
 const Index = () => {

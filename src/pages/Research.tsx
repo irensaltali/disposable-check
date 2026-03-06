@@ -41,7 +41,7 @@ const researchArticleSchema = {
     "@type": "Article",
     headline: "What Is a Disposable Email and How Do You Detect It?",
     description: "A research-backed guide to disposable email abuse, sender reputation damage, and practical detection strategies.",
-    mainEntityOfPage: "https://disposablecheck.com/the-disposable-email-epidemic",
+    mainEntityOfPage: "https://disposablecheck.irensaltali.com//the-disposable-email-epidemic",
     author: {
         "@type": "Organization",
         name: "DisposableCheck",
@@ -51,10 +51,10 @@ const researchArticleSchema = {
         name: "DisposableCheck",
         logo: {
             "@type": "ImageObject",
-            url: "https://disposablecheck.com/logo.png",
+            url: "https://disposablecheck.irensaltali.com//logo.png",
         },
     },
-    image: "https://disposablecheck.com/og-image.png",
+    image: "https://disposablecheck.irensaltali.com//og-image.png",
 };
 
 const researchFaqSchema = {

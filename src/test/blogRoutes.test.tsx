@@ -49,7 +49,7 @@ describe("blog routes", () => {
 
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      "https://disposablecheck.com/blog/check-disposable-email-address",
+      "https://disposablecheck.irensaltali.com//blog/check-disposable-email-address",
     );
 
     const schemas = Array.from(

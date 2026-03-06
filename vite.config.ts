@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     Sitemap({
-      hostname: 'https://disposablecheck.com',
+      hostname: 'https://disposablecheck.irensaltali.com/',
       dynamicRoutes: [
         '/bulk',
         '/report',

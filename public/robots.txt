@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://disposablecheck.com/sitemap.xml
+Sitemap: https://disposablecheck.irensaltali.com//sitemap.xml

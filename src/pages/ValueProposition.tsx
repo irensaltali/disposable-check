@@ -42,7 +42,7 @@ const valuePropositionArticleSchema = {
     "@type": "Article",
     headline: "Why Use a Disposable Email Checker for Fraud Prevention?",
     description: "Understand the business impact of disposable emails and how deep verification improves deliverability, security, and ROI.",
-    mainEntityOfPage: "https://disposablecheck.com/value-proposition",
+    mainEntityOfPage: "https://disposablecheck.irensaltali.com//value-proposition",
     author: {
         "@type": "Organization",
         name: "DisposableCheck",
@@ -52,10 +52,10 @@ const valuePropositionArticleSchema = {
         name: "DisposableCheck",
         logo: {
             "@type": "ImageObject",
-            url: "https://disposablecheck.com/logo.png",
+            url: "https://disposablecheck.irensaltali.com//logo.png",
         },
     },
-    image: "https://disposablecheck.com/og-image.png",
+    image: "https://disposablecheck.irensaltali.com//og-image.png",
 };
 
 const valuePropositionFaqSchema = {

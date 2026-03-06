@@ -1,6 +1,6 @@
 import { blogRouteLabels } from "@/content/blogPosts";
 
-export const SITE_URL = "https://disposablecheck.com";
+export const SITE_URL = "https://disposablecheck.irensaltali.com/";
 
 export interface BreadcrumbItem {
   name: string;
