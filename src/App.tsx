@@ -12,6 +12,8 @@ import GetApiKey from "./pages/GetApiKey";
 import Terms from "./pages/Terms";
 import Research from "./pages/Research";
 import ValueProposition from "./pages/ValueProposition";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
             <Route path="/report" element={<ReportDomain />} />
             <Route path="/docs" element={<ApiDocs />} />
             <Route path="/get-api-key" element={<GetApiKey />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/the-disposable-email-epidemic" element={<Research />} />
             <Route path="/value-proposition" element={<ValueProposition />} />

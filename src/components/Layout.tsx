@@ -18,10 +18,19 @@ import { buildBreadcrumbs } from "@/lib/seo";
 const navItems = [
   { path: "/", label: "Check Email" },
   { path: "/bulk", label: "Bulk Check" },
+  { path: "/blog", label: "Blog" },
   { path: "/report", label: "Report Domain" },
   { path: "/docs", label: "API Docs" },
   { path: "/get-api-key", label: "Get API Key" },
 ];
+
+const isActiveNavItem = (currentPath: string, itemPath: string) => {
+  if (itemPath === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath === itemPath || currentPath.startsWith(`${itemPath}/`);
+};
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -49,7 +58,7 @@ export function Layout({ children }: LayoutProps) {
                 to={item.path}
                 className={cn(
                   "px-2.5 lg:px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  location.pathname === item.path
+                  isActiveNavItem(location.pathname, item.path)
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
@@ -84,7 +93,7 @@ export function Layout({ children }: LayoutProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
                   "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  location.pathname === item.path
+                  isActiveNavItem(location.pathname, item.path)
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
@@ -144,6 +153,9 @@ export function Layout({ children }: LayoutProps) {
               </Link>
               <Link to="/value-proposition" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="The Disposable Email Checker Advantage">
                 Value Proposition
+              </Link>
+              <Link to="/blog" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="Disposable Email Detection Blog">
+                Blog
               </Link>
             </div>
           </div>

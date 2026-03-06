@@ -1,3 +1,5 @@
+import { blogRouteLabels } from "@/content/blogPosts";
+
 export const SITE_URL = "https://disposablecheck.com";
 
 export interface BreadcrumbItem {
@@ -11,9 +13,11 @@ const STATIC_ROUTE_LABELS: Record<string, string> = {
   "/report": "Report Disposable Domain",
   "/docs": "Disposable Email API Documentation",
   "/get-api-key": "Get Free API Key",
+  "/blog": "Blog",
   "/terms": "Terms of Service",
   "/the-disposable-email-epidemic": "Disposable Email Research",
   "/value-proposition": "Disposable Email Checker Value Proposition",
+  ...blogRouteLabels,
 };
 
 const formatSlug = (segment: string) =>
