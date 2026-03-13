@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { blogPosts } from "@/content/blogPosts";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 
@@ -26,11 +27,11 @@ afterEach(() => {
 });
 
 describe("blog routes", () => {
-  it("renders the blog hub with five article cards", () => {
+  it("renders the blog hub with an article card for each post", () => {
     renderRoute("/blog", "/blog", <Blog />);
 
     expect(screen.getByRole("heading", { level: 1, name: /disposable email detection blog/i })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /read article/i })).toHaveLength(5);
+    expect(screen.getAllByRole("link", { name: /read article/i })).toHaveLength(blogPosts.length);
   });
 
   it("renders an article page with FAQ, CTA, related links, and JSON-LD", async () => {

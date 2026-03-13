@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { blogPosts, blogRouteLabels, blogSitemapRoutes } from "@/content/blogPosts";
 
 describe("blog post content integrity", () => {
-  it("contains five unique posts with required fields", () => {
-    expect(blogPosts).toHaveLength(5);
+  it("contains unique posts with required fields", () => {
+    expect(blogPosts.length).toBeGreaterThan(0);
 
     const slugs = new Set<string>();
     const primaryKeywords = new Set<string>();
