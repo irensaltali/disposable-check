@@ -1,4 +1,7 @@
 import { blogRouteLabels } from "@/content/blogPosts";
+import { glossaryRouteLabels } from "@/content/glossaryTerms";
+import { comparisonRouteLabels } from "@/content/comparisons";
+import { useCaseRouteLabels } from "@/content/useCases";
 
 export const SITE_URL = "https://disposablecheck.irensaltali.com/";
 
@@ -18,6 +21,9 @@ const STATIC_ROUTE_LABELS: Record<string, string> = {
   "/the-disposable-email-epidemic": "Disposable Email Research",
   "/value-proposition": "Disposable Email Checker Value Proposition",
   ...blogRouteLabels,
+  ...glossaryRouteLabels,
+  ...comparisonRouteLabels,
+  ...useCaseRouteLabels,
 };
 
 const formatSlug = (segment: string) =>

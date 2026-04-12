@@ -14,6 +14,12 @@ import Research from "./pages/Research";
 import ValueProposition from "./pages/ValueProposition";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Glossary from "./pages/Glossary";
+import GlossaryTerm from "./pages/GlossaryTerm";
+import Comparisons from "./pages/Comparisons";
+import ComparisonDetail from "./pages/ComparisonDetail";
+import UseCases from "./pages/UseCases";
+import UseCaseDetail from "./pages/UseCaseDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +39,12 @@ const App = () => (
             <Route path="/get-api-key" element={<GetApiKey />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="/glossary/:slug" element={<GlossaryTerm />} />
+            <Route path="/compare" element={<Comparisons />} />
+            <Route path="/compare/:slug" element={<ComparisonDetail />} />
+            <Route path="/use-cases" element={<UseCases />} />
+            <Route path="/use-cases/:slug" element={<UseCaseDetail />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/the-disposable-email-epidemic" element={<Research />} />
             <Route path="/value-proposition" element={<ValueProposition />} />

@@ -154,6 +154,15 @@ export function Layout({ children }: LayoutProps) {
               <Link to="/value-proposition" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="The Disposable Email Checker Advantage">
                 Value Proposition
               </Link>
+              <Link to="/glossary" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="Email Security Glossary">
+                Glossary
+              </Link>
+              <Link to="/compare" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="Compare Disposable Email Checkers">
+                Compare
+              </Link>
+              <Link to="/use-cases" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="Disposable Email Detection Use Cases">
+                Use Cases
+              </Link>
               <Link to="/blog" className="hover:text-foreground transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm" title="Disposable Email Detection Blog">
                 Blog
               </Link>
