@@ -41,7 +41,8 @@ describe("blog routes", () => {
       screen.getByRole("heading", { level: 1, name: /how to check disposable email address risk during signup/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /frequently asked questions/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /validate an address/i })).toBeInTheDocument();
+    // The CTA renders twice on every post (mid-article and end-of-article), so use getAllByRole.
+    expect(screen.getAllByRole("link", { name: /validate an address/i }).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /view all posts/i })).toBeInTheDocument();
 
     await waitFor(() => {
@@ -50,7 +51,7 @@ describe("blog routes", () => {
 
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      "https://disposablecheck.irensaltali.com//blog/check-disposable-email-address",
+      "https://disposablecheck.irensaltali.com/blog/check-disposable-email-address",
     );
 
     const schemas = Array.from(

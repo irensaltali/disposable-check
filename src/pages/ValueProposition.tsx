@@ -376,7 +376,7 @@ const ValueProposition = () => {
                 <section className="md:col-span-2 bg-card rounded-xl shadow-md p-8 border-l-8 border-pink-500">
                     <h2 className="text-3xl font-bold text-foreground mb-4">1. The Cost of False Users</h2>
                     <p className="text-muted-foreground text-lg mb-6">
-                        Disposable emails are the primary tool for <strong>freemium abuse</strong>, credit card fraud, and marketing database inflation. A robust <strong>temporary email detector</strong> identifies these temporary inboxes instantly, protecting your bottom line. We provide reliable <Link to="/bulk" className="text-primary hover:underline font-medium">bulkcheck</Link> capabilities to clean your existing lists.
+                        Disposable emails are the primary tool for <strong>freemium abuse</strong>, credit card fraud, and marketing database inflation. A robust <strong>temporary email detector</strong> identifies these temporary inboxes instantly, protecting your bottom line. We provide reliable <Link to="/bulk" className="text-primary hover:underline font-medium">bulk email verification</Link> to clean your existing lists.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -562,7 +562,7 @@ const ValueProposition = () => {
                         <div>
                             <h3 className="text-xl font-bold text-primary mb-2">Do you support bulk operations?</h3>
                             <p className="text-muted-foreground mb-4">
-                                Yes, our <Link to="/bulk" className="text-indigo-500 hover:underline">bulkcheck</Link> feature allows you to verify lists of emails efficiently, saving you time and ensuring your entire database is clean.
+                                Yes, our <Link to="/bulk" className="text-indigo-500 hover:underline">bulk email checker</Link> allows you to verify lists of emails efficiently, saving you time and ensuring your entire database is clean.
                             </p>
                             <h3 className="text-xl font-bold text-primary mb-2">How do I check a disposable email address?</h3>
                             <p className="text-muted-foreground mb-4">

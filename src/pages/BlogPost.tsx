@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NotFound from "@/pages/NotFound";
-import { SITE_URL } from "@/lib/seo";
+import { toAbsoluteUrl } from "@/lib/seo";
 import { blogPostBySlug, blogPosts } from "@/content/blogPosts";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -90,7 +90,7 @@ const BlogPost = () => {
   }
 
   const articlePath = `/blog/${post.slug}`;
-  const articleUrl = `${SITE_URL}${articlePath}`;
+  const articleUrl = toAbsoluteUrl(articlePath);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -100,7 +100,7 @@ const BlogPost = () => {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     keywords: [post.primaryKeyword, post.secondaryKeyword],
-    image: `${SITE_URL}/og-image.png`,
+    image: toAbsoluteUrl("/og-image.png"),
     author: {
       "@type": "Organization",
       name: "DisposableCheck",
@@ -110,7 +110,7 @@ const BlogPost = () => {
       name: "DisposableCheck",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
+        url: toAbsoluteUrl("/logo.png"),
       },
     },
   };
@@ -139,6 +139,7 @@ const BlogPost = () => {
         description={post.description}
         type="article"
         path={articlePath}
+        robots={post.noindex ? "noindex,follow" : "index,follow"}
         schema={[articleSchema, faqSchema]}
       />
 

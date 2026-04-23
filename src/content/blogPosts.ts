@@ -36,6 +36,10 @@ export interface BlogPost {
   faq: BlogFaq[];
   cta: BlogCta;
   relatedSlugs: string[];
+  // Set true to render <meta robots="noindex,follow"> on this post.
+  // Used to resolve cannibalization with the homepage / other canonical pages
+  // while preserving link equity from inbound links.
+  noindex?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -150,6 +154,7 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "rate-limiting-as-an-anti-spam-tool",
     ],
+    noindex: true,
   },
   {
     slug: "disposable-email-detection-api",
@@ -364,6 +369,7 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "check-email-disposability",
     ],
+    noindex: true,
   },
   {
     slug: "check-disposable-email-address",
@@ -471,6 +477,7 @@ export const blogPosts: BlogPost[] = [
       "temporary-email-detector",
       "disposable-email-detection-api",
     ],
+    noindex: true,
   },
   {
     slug: "temporary-email-detector",
@@ -578,6 +585,7 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "rate-limiting-as-an-anti-spam-tool",
     ],
+    noindex: true,
   },
   {
     slug: "rate-limiting-as-an-anti-spam-tool",
@@ -706,4 +714,7 @@ export const blogRouteLabels = blogPosts.reduce<Record<string, string>>(
   { "/blog": "Blog" },
 );
 
-export const blogSitemapRoutes = ["/blog", ...blogPosts.map((post) => `/blog/${post.slug}`)];
+export const blogSitemapRoutes = [
+  "/blog",
+  ...blogPosts.filter((post) => !post.noindex).map((post) => `/blog/${post.slug}`),
+];

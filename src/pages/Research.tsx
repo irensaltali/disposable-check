@@ -605,7 +605,7 @@ const Research = () => {
                             </p>
                             <h3 className="font-bold text-lg mb-2">Can I clean my existing list?</h3>
                             <p className="text-muted-foreground text-sm mb-4">
-                                Yes. The <Link to="/bulk" className="text-primary hover:underline font-medium">bulkcheck</Link> feature allows you to upload large CSV files and identify temporary addresses in your historical data.
+                                Yes. The <Link to="/bulk" className="text-primary hover:underline font-medium">bulk email checker</Link> allows you to upload large CSV files and identify temporary addresses in your historical data.
                             </p>
                         </div>
                         <div>

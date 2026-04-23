@@ -40,7 +40,13 @@ describe("blog post content integrity", () => {
     expect(blogRouteLabels["/blog"]).toBe("Blog");
 
     blogPosts.forEach((post) => {
-      expect(blogSitemapRoutes).toContain(`/blog/${post.slug}`);
+      // Noindexed posts are intentionally excluded from the sitemap so we
+      // don't ask Google to crawl pages we've told it not to index.
+      if (post.noindex) {
+        expect(blogSitemapRoutes).not.toContain(`/blog/${post.slug}`);
+      } else {
+        expect(blogSitemapRoutes).toContain(`/blog/${post.slug}`);
+      }
       expect(blogRouteLabels[`/blog/${post.slug}`]).toBe(post.title);
 
       post.relatedSlugs.forEach((relatedSlug) => {

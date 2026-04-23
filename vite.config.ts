@@ -42,4 +42,21 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("plotly.js") || id.includes("react-plotly")) return "plotly";
+            if (id.includes("chart.js") || id.includes("react-chartjs-2") || id.includes("chartjs-plugin")) return "chartjs";
+            if (id.includes("recharts") || id.includes("d3-")) return "recharts";
+            if (id.includes("@radix-ui")) return "radix";
+            if (id.includes("react-router") || id.includes("@remix-run")) return "router";
+            if (id.includes("react-dom") || id.includes("scheduler")) return "react-dom";
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 800,
+  },
 }));
