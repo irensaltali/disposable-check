@@ -142,9 +142,18 @@ print(data)  # Full response`}
               <CardContent className="space-y-4 p-4 sm:p-6 pt-0 sm:pt-0">
                 <Tabs defaultValue="claude-code">
                   <TabsList className="w-full sm:w-auto flex-wrap h-auto">
+                    <TabsTrigger value="hosted" className="text-xs sm:text-sm">Hosted HTTPS</TabsTrigger>
                     <TabsTrigger value="claude-code" className="text-xs sm:text-sm">Claude Code</TabsTrigger>
                     <TabsTrigger value="claude-desktop" className="text-xs sm:text-sm">Claude Desktop</TabsTrigger>
                   </TabsList>
+                  <TabsContent value="hosted" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Use the hosted Streamable HTTP endpoint with an API key header:</p>
+                    <pre className="code-block text-xs whitespace-pre-wrap break-all">{`https://disposablecheck.irensaltali.com/mcp
+
+Authorization: Bearer dk_live_YOUR_KEY
+# or
+X-API-Key: dk_live_YOUR_KEY`}</pre>
+                  </TabsContent>
                   <TabsContent value="claude-code" className="mt-4 space-y-3">
                     <p className="text-sm text-muted-foreground">Run this once in your terminal (replace with your API key):</p>
                     <pre className="code-block text-xs whitespace-pre-wrap break-all">{`claude mcp add disposable-check \\
@@ -188,6 +197,13 @@ print(data)  # Full response`}
                         <Badge variant="outline" className="text-xs font-mono">get_key_info</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">View daily limit, requests used today, and remaining quota for your API key.</p>
+                    </div>
+                    <div className="rounded-lg border p-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Badge variant="outline" className="text-xs font-mono">get_stats</Badge>
+                        <Badge variant="outline" className="text-xs font-mono">report_domain</Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Read platform stats or submit a disposable-domain community report for review.</p>
                     </div>
                   </div>
                 </div>
