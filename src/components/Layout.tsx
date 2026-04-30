@@ -20,7 +20,7 @@ const navItems = [
   { path: "/bulk", label: "Bulk Check" },
   { path: "/blog", label: "Blog" },
   { path: "/report", label: "Report Domain" },
-  { path: "/docs", label: "API Docs" },
+  { path: "/docs", label: "API/MCP Docs" },
   { path: "/get-api-key", label: "Get API Key" },
 ];
 
