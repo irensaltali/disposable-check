@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { AttributionPopup } from "@/components/AttributionPopup";
-import { Info } from "lucide-react";
+import { Info, Bot } from "lucide-react";
 
 const ApiDocs = () => {
   return (
@@ -126,6 +126,71 @@ print(data)  # Full response`}
                     </pre>
                   </TabsContent>
                 </Tabs>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                  <Bot className="h-4 w-4" />
+                  MCP Server (Claude / AI Clients)
+                </CardTitle>
+                <CardDescription className="text-sm">
+                  Use DisposableCheck directly inside Claude Code, Claude Desktop, or Cursor — no HTTP calls needed.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4 p-4 sm:p-6 pt-0 sm:pt-0">
+                <Tabs defaultValue="claude-code">
+                  <TabsList className="w-full sm:w-auto flex-wrap h-auto">
+                    <TabsTrigger value="claude-code" className="text-xs sm:text-sm">Claude Code</TabsTrigger>
+                    <TabsTrigger value="claude-desktop" className="text-xs sm:text-sm">Claude Desktop</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="claude-code" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Run this once in your terminal (replace with your API key):</p>
+                    <pre className="code-block text-xs whitespace-pre-wrap break-all">{`claude mcp add disposable-check \\
+  -e DISPOSABLE_CHECK_API_KEY=dk_live_YOUR_KEY \\
+  -- npx -y disposable-check-mcp`}</pre>
+                    <p className="text-sm text-muted-foreground">Then ask Claude naturally:</p>
+                    <div className="space-y-2">
+                      <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Is user@mailinator.com a disposable email?"</div>
+                      <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Check test@gmail.com with deep MX/SMTP verification."</div>
+                      <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Show my API quota for iren.para@gmail.com"</div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="claude-desktop" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Add to <code className="text-xs bg-muted px-1 rounded">~/Library/Application Support/Claude/claude_desktop_config.json</code>:</p>
+                    <pre className="code-block text-xs">{`{
+  "mcpServers": {
+    "disposable-check": {
+      "command": "npx",
+      "args": ["-y", "disposable-check-mcp"],
+      "env": {
+        "DISPOSABLE_CHECK_API_KEY": "dk_live_YOUR_KEY"
+      }
+    }
+  }
+}`}</pre>
+                    <p className="text-sm text-muted-foreground">Restart Claude Desktop and the tools will be available automatically.</p>
+                  </TabsContent>
+                </Tabs>
+
+                <div>
+                  <h4 className="font-medium mb-3 text-sm">Available Tools</h4>
+                  <div className="space-y-3">
+                    <div className="rounded-lg border p-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Badge variant="outline" className="text-xs font-mono">check_email</Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Check if an email is disposable. Pass <code className="bg-muted px-1 rounded">check_reachable: true</code> for live MX + SMTP deep verification.</p>
+                    </div>
+                    <div className="rounded-lg border p-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Badge variant="outline" className="text-xs font-mono">get_key_info</Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">View daily limit, requests used today, and remaining quota for your API key.</p>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
