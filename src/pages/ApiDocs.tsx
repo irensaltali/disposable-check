@@ -136,59 +136,70 @@ print(data)  # Full response`}
                   MCP Server (Claude / AI Clients)
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  Use DisposableCheck directly inside Claude Code, Claude Desktop, or Cursor — no HTTP calls needed.
+                  Use DisposableCheck directly inside Claude Code, Claude Desktop, or any MCP-compatible AI client — no integration code required.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 p-4 sm:p-6 pt-0 sm:pt-0">
-                <Tabs defaultValue="claude-code">
+                <Tabs defaultValue="hosted">
                   <TabsList className="w-full sm:w-auto flex-wrap h-auto">
                     <TabsTrigger value="hosted" className="text-xs sm:text-sm">Hosted HTTPS</TabsTrigger>
                     <TabsTrigger value="claude-code" className="text-xs sm:text-sm">Claude Code</TabsTrigger>
                     <TabsTrigger value="claude-desktop" className="text-xs sm:text-sm">Claude Desktop</TabsTrigger>
                   </TabsList>
                   <TabsContent value="hosted" className="mt-4 space-y-3">
-                    <p className="text-sm text-muted-foreground">Use the hosted Streamable HTTP endpoint with an API key header:</p>
-                    <pre className="code-block text-xs whitespace-pre-wrap break-all">{`https://disposablecheck.irensaltali.com/mcp
-
-Authorization: Bearer dk_live_YOUR_KEY
-# or
+                    <p className="text-sm text-muted-foreground">Stateless Streamable HTTP endpoint — connect any MCP client directly:</p>
+                    <pre className="code-block text-xs">{`POST https://disposablecheck.irensaltali.com/mcp
 X-API-Key: dk_live_YOUR_KEY`}</pre>
+                    <p className="text-sm text-muted-foreground">Raw example with curl:</p>
+                    <pre className="code-block text-xs whitespace-pre-wrap">{`curl -X POST https://disposablecheck.irensaltali.com/mcp \\
+  -H 'Content-Type: application/json' \\
+  -H 'Accept: application/json, text/event-stream' \\
+  -H 'X-API-Key: dk_live_YOUR_KEY' \\
+  -d '{
+    "jsonrpc": "2.0", "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "check_email",
+      "arguments": { "email": "user@mailinator.com" }
+    }
+  }'`}</pre>
                   </TabsContent>
                   <TabsContent value="claude-code" className="mt-4 space-y-3">
-                    <p className="text-sm text-muted-foreground">Run this once in your terminal (replace with your API key):</p>
-                    <pre className="code-block text-xs whitespace-pre-wrap break-all">{`claude mcp add disposable-check \\
-  -e DISPOSABLE_CHECK_API_KEY=dk_live_YOUR_KEY \\
-  -- npx -y disposable-check-mcp`}</pre>
-                    <p className="text-sm text-muted-foreground">Then ask Claude naturally:</p>
+                    <p className="text-sm text-muted-foreground">Add the hosted endpoint once in your terminal:</p>
+                    <pre className="code-block text-xs whitespace-pre-wrap">{`claude mcp add disposable-check \\
+  -t http \\
+  -H "X-API-Key: dk_live_YOUR_KEY" \\
+  https://disposablecheck.irensaltali.com/mcp`}</pre>
+                    <p className="text-sm text-muted-foreground">Then ask Claude naturally in any project:</p>
                     <div className="space-y-2">
                       <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Is user@mailinator.com a disposable email?"</div>
                       <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Check test@gmail.com with deep MX/SMTP verification."</div>
-                      <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Show my API quota for iren.para@gmail.com"</div>
+                      <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Show my API quota for my@email.com"</div>
                     </div>
                   </TabsContent>
                   <TabsContent value="claude-desktop" className="mt-4 space-y-3">
-                    <p className="text-sm text-muted-foreground">Add to <code className="text-xs bg-muted px-1 rounded">~/Library/Application Support/Claude/claude_desktop_config.json</code>:</p>
+                    <p className="text-sm text-muted-foreground">Add to <code className="text-xs bg-muted px-1 rounded">~/Library/Application Support/Claude/claude_desktop_config.json</code> and restart:</p>
                     <pre className="code-block text-xs">{`{
   "mcpServers": {
     "disposable-check": {
-      "command": "npx",
-      "args": ["-y", "disposable-check-mcp"],
-      "env": {
-        "DISPOSABLE_CHECK_API_KEY": "dk_live_YOUR_KEY"
+      "type": "http",
+      "url": "https://disposablecheck.irensaltali.com/mcp",
+      "headers": {
+        "X-API-Key": "dk_live_YOUR_KEY"
       }
     }
   }
 }`}</pre>
-                    <p className="text-sm text-muted-foreground">Restart Claude Desktop and the tools will be available automatically.</p>
                   </TabsContent>
                 </Tabs>
 
                 <div>
                   <h4 className="font-medium mb-3 text-sm">Available Tools</h4>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="rounded-lg border p-3">
                       <div className="flex items-center gap-2 mb-1">
                         <Badge variant="outline" className="text-xs font-mono">check_email</Badge>
+                        <Badge variant="secondary" className="text-xs">API key required</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">Check if an email is disposable. Pass <code className="bg-muted px-1 rounded">check_reachable: true</code> for live MX + SMTP deep verification.</p>
                     </div>
@@ -196,14 +207,19 @@ X-API-Key: dk_live_YOUR_KEY`}</pre>
                       <div className="flex items-center gap-2 mb-1">
                         <Badge variant="outline" className="text-xs font-mono">get_key_info</Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">View daily limit, requests used today, and remaining quota for your API key.</p>
+                      <p className="text-xs text-muted-foreground">View daily limit, requests used today, and remaining quota for an API key account.</p>
                     </div>
                     <div className="rounded-lg border p-3">
                       <div className="flex items-center gap-2 mb-1">
                         <Badge variant="outline" className="text-xs font-mono">get_stats</Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Get aggregate platform stats: total checks, disposable domains tracked, and community reports.</p>
+                    </div>
+                    <div className="rounded-lg border p-3">
+                      <div className="flex items-center gap-2 mb-1">
                         <Badge variant="outline" className="text-xs font-mono">report_domain</Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">Read platform stats or submit a disposable-domain community report for review.</p>
+                      <p className="text-xs text-muted-foreground">Submit a domain for review as a disposable provider. Reports are reviewed before being added to the blocklist.</p>
                     </div>
                   </div>
                 </div>
