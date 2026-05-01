@@ -6,7 +6,7 @@ import { EmailChecker } from "@/components/EmailChecker";
 import { StatsCard } from "@/components/StatsCard";
 import { Button } from "@/components/ui/button";
 import { mockStats } from "@/lib/mockData";
-import { Mail, Database, Users, Code2, ArrowRight } from "lucide-react";
+import { Mail, Database, Users, Code2, ArrowRight, Bot } from "lucide-react";
 
 const API_BASE_URL = "https://disposablecheck.irensaltali.com/api";
 
@@ -129,7 +129,7 @@ const Index = () => {
           </div>
 
           <section
-            aria-labelledby="api-cta-heading"
+            aria-labelledby="developer-cta-heading"
             className="mt-16 sm:mt-20 max-w-4xl mx-auto rounded-2xl border bg-card p-6 sm:p-8 lg:p-10"
           >
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
@@ -137,16 +137,34 @@ const Index = () => {
                 <Code2 className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
               <div className="flex-1 space-y-4">
-                <h2 id="api-cta-heading" className="text-xl sm:text-2xl font-semibold">
-                  Need this in your app? Use the free API.
+                <h2 id="developer-cta-heading" className="text-xl sm:text-2xl font-semibold">
+                  Need this in your app or AI agent?
                 </h2>
                 <p className="text-sm sm:text-base text-muted-foreground">
-                  Block disposable signups before they hit your database. 1,000 free requests/day, no credit card. Five lines of code.
+                  Block disposable signups before they hit your database, or let an MCP-compatible agent check emails directly. 1,000 free API requests/day, no credit card.
                 </p>
-                <pre className="overflow-x-auto rounded-lg bg-muted p-3 sm:p-4 text-xs sm:text-sm font-mono">
+                <div className="grid gap-3 lg:grid-cols-2">
+                  <div className="rounded-lg border bg-muted/40 p-3 sm:p-4">
+                    <div className="mb-2 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                      <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
+                      HTTP API
+                    </div>
+                    <pre className="overflow-x-auto text-xs font-mono">
 {`curl 'https://disposablecheck.irensaltali.com/api/v1/check?email=user@tempmail.com' \\
   -H 'X-API-Key: YOUR_KEY'`}
-                </pre>
+                    </pre>
+                  </div>
+                  <div className="rounded-lg border bg-muted/40 p-3 sm:p-4">
+                    <div className="mb-2 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                      <Bot className="h-3.5 w-3.5" aria-hidden="true" />
+                      MCP HTTP
+                    </div>
+                    <pre className="overflow-x-auto text-xs font-mono">
+{`https://disposablecheck.irensaltali.com/mcp
+X-API-Key: YOUR_KEY`}
+                    </pre>
+                  </div>
+                </div>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild>
                     <Link to="/get-api-key">

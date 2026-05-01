@@ -144,7 +144,10 @@ print(data)  # Full response`}
                   <TabsList className="w-full sm:w-auto flex-wrap h-auto">
                     <TabsTrigger value="hosted" className="text-xs sm:text-sm">Hosted HTTPS</TabsTrigger>
                     <TabsTrigger value="claude-code" className="text-xs sm:text-sm">Claude Code</TabsTrigger>
-                    <TabsTrigger value="claude-desktop" className="text-xs sm:text-sm">Claude Desktop</TabsTrigger>
+                    <TabsTrigger value="claude" className="text-xs sm:text-sm">Claude</TabsTrigger>
+                    <TabsTrigger value="cursor" className="text-xs sm:text-sm">Cursor</TabsTrigger>
+                    <TabsTrigger value="vscode" className="text-xs sm:text-sm">VS Code</TabsTrigger>
+                    <TabsTrigger value="postman" className="text-xs sm:text-sm">Postman</TabsTrigger>
                   </TabsList>
                   <TabsContent value="hosted" className="mt-4 space-y-3">
                     <p className="text-sm text-muted-foreground">Stateless Streamable HTTP endpoint — connect any MCP client directly:</p>
@@ -167,7 +170,7 @@ X-API-Key: dk_live_YOUR_KEY`}</pre>
                   <TabsContent value="claude-code" className="mt-4 space-y-3">
                     <p className="text-sm text-muted-foreground">Add the hosted endpoint once in your terminal:</p>
                     <pre className="code-block text-xs whitespace-pre-wrap">{`claude mcp add disposable-check \\
-  -t http \\
+  --transport http \\
   -H "X-API-Key: dk_live_YOUR_KEY" \\
   https://disposablecheck.irensaltali.com/mcp`}</pre>
                     <p className="text-sm text-muted-foreground">Then ask Claude naturally in any project:</p>
@@ -177,12 +180,24 @@ X-API-Key: dk_live_YOUR_KEY`}</pre>
                       <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-mono">"Show my API quota for my@email.com"</div>
                     </div>
                   </TabsContent>
-                  <TabsContent value="claude-desktop" className="mt-4 space-y-3">
-                    <p className="text-sm text-muted-foreground">Add to <code className="text-xs bg-muted px-1 rounded">~/Library/Application Support/Claude/claude_desktop_config.json</code> and restart:</p>
+                  <TabsContent value="claude" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">For Claude Desktop or Claude.ai, add remote MCP servers from Settings → Connectors. Use this URL for public tools such as stats and reports:</p>
+                    <pre className="code-block text-xs">{`https://disposablecheck.irensaltali.com/mcp`}</pre>
+                    <p className="text-sm text-muted-foreground">The hosted <code className="text-xs bg-muted px-1 rounded">check_email</code> tool requires an API key header. Use Claude Code, VS Code, Cursor, Postman, or the Claude API when you need static header auth.</p>
+                    <p className="text-sm text-muted-foreground">Claude API MCP connector example:</p>
+                    <pre className="code-block text-xs">{`{
+  "type": "url",
+  "name": "disposable-check",
+  "url": "https://disposablecheck.irensaltali.com/mcp",
+  "authorization_token": "dk_live_YOUR_KEY"
+}`}</pre>
+                    <p className="text-sm text-muted-foreground">Do not use <code className="text-xs bg-muted px-1 rounded">claude_desktop_config.json</code> for hosted connectors; that file is for local MCP servers.</p>
+                  </TabsContent>
+                  <TabsContent value="cursor" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Create or edit <code className="text-xs bg-muted px-1 rounded">~/.cursor/mcp.json</code> for all projects, or <code className="text-xs bg-muted px-1 rounded">.cursor/mcp.json</code> in one project:</p>
                     <pre className="code-block text-xs">{`{
   "mcpServers": {
     "disposable-check": {
-      "type": "http",
       "url": "https://disposablecheck.irensaltali.com/mcp",
       "headers": {
         "X-API-Key": "dk_live_YOUR_KEY"
@@ -190,6 +205,39 @@ X-API-Key: dk_live_YOUR_KEY`}</pre>
     }
   }
 }`}</pre>
+                    <p className="text-sm text-muted-foreground">Restart Cursor or reload MCP servers after saving.</p>
+                  </TabsContent>
+                  <TabsContent value="vscode" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Create <code className="text-xs bg-muted px-1 rounded">.vscode/mcp.json</code> in your workspace, or add it to your user MCP config:</p>
+                    <pre className="code-block text-xs">{`{
+  "servers": {
+    "disposable-check": {
+      "type": "http",
+      "url": "https://disposablecheck.irensaltali.com/mcp",
+      "headers": {
+        "X-API-Key": "\${input:disposable-check-api-key}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "disposable-check-api-key",
+      "type": "promptString",
+      "description": "DisposableCheck API key",
+      "password": true
+    }
+  ]
+}`}</pre>
+                    <p className="text-sm text-muted-foreground">Use GitHub Copilot Agent mode and enable the DisposableCheck tools when prompted.</p>
+                  </TabsContent>
+                  <TabsContent value="postman" className="mt-4 space-y-3">
+                    <p className="text-sm text-muted-foreground">Use Postman’s MCP request builder with the HTTP URL and an explicit header:</p>
+                    <pre className="code-block text-xs">{`URL
+https://disposablecheck.irensaltali.com/mcp
+
+Headers
+X-API-Key: dk_live_YOUR_KEY`}</pre>
+                    <p className="text-sm text-muted-foreground">If you use Authorization instead, send either <code className="text-xs bg-muted px-1 rounded">Bearer dk_live_YOUR_KEY</code> or the raw key. The server accepts both.</p>
                   </TabsContent>
                 </Tabs>
 
