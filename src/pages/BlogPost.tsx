@@ -110,7 +110,7 @@ const BlogPost = () => {
       name: "DisposableCheck",
       logo: {
         "@type": "ImageObject",
-        url: toAbsoluteUrl("/logo.png"),
+        url: toAbsoluteUrl("/logo.webp"),
       },
     },
   };
@@ -155,7 +155,8 @@ const BlogPost = () => {
               <div>
                 <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">{post.h1}</h1>
                 <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-                  Published {dateFormatter.format(new Date(post.publishedAt))} · Updated{" "}
+                  By <span className="font-medium text-foreground">DisposableCheck</span> · Published{" "}
+                  {dateFormatter.format(new Date(post.publishedAt))} · Updated{" "}
                   {dateFormatter.format(new Date(post.updatedAt))}
                 </p>
               </div>

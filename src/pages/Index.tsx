@@ -21,7 +21,73 @@ const organizationSchema = {
   "@type": "Organization",
   name: "DisposableCheck",
   url: "https://disposablecheck.irensaltali.com/",
-  logo: "https://disposablecheck.irensaltali.com/logo.png",
+  logo: "https://disposablecheck.irensaltali.com/logo.webp",
+};
+
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "DisposableCheck",
+  url: "https://disposablecheck.irensaltali.com/",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
+  description:
+    "Free disposable email checker and API. Detect temporary, throwaway, and burner email addresses instantly with MX and SMTP verification.",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "Disposable email domain detection",
+    "MX record verification",
+    "SMTP connectivity check",
+    "Free API with 1,000 daily requests",
+    "MCP server for AI agents",
+  ],
+};
+
+const homepageFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is a disposable email address?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A disposable email address is a temporary inbox created on a throwaway domain (e.g. mailinator.com, tempmail.com). Users create them to avoid giving out their real address, then abandon them. They are commonly used to bypass sign-up requirements, exploit free trials, and avoid spam.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does DisposableCheck detect disposable emails?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "DisposableCheck checks the email's domain against a continuously updated blocklist of 120,000+ known disposable domains aggregated from multiple authoritative sources. Optionally, it performs live MX record lookup and SMTP verification to confirm whether the address can actually receive mail.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is DisposableCheck free to use?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. The web tool is completely free with no account required. The API is free up to 1,000 requests per day with a free API key. No credit card is needed.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is deep email verification (MX & SMTP check)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Deep verification goes beyond domain list matching. It queries DNS for the domain's MX records to verify the domain accepts email, then performs an SMTP handshake to confirm the specific mailbox exists and is not a catch-all. This adds 1–3 seconds of latency but catches disposable addresses that use legitimate infrastructure.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I use DisposableCheck in my application?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. DisposableCheck provides a REST API (GET /api/v1/check) and an MCP server endpoint for AI agents. Get a free API key at disposablecheck.irensaltali.com/get-api-key. The API supports JavaScript, Python, cURL, and any HTTP client.",
+      },
+    },
+  ],
 };
 
 const Index = () => {
@@ -86,7 +152,7 @@ const Index = () => {
       <SeoHead
         title="Disposable Email Checker — Free Tool & API | DisposableCheck"
         description="Free disposable email checker. Detect temporary, throwaway, and burner email addresses instantly with MX and SMTP verification. Free API with 1,000 daily requests."
-        schema={organizationSchema}
+        schema={[organizationSchema, softwareAppSchema, homepageFaqSchema]}
       />
       <section className="py-10 sm:py-16 lg:py-20">
         <div className="container mx-auto container-responsive">
@@ -176,6 +242,20 @@ X-API-Key: YOUR_KEY`}
                   </Button>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="faq-heading" className="mt-16 sm:mt-20 max-w-4xl mx-auto">
+            <h2 id="faq-heading" className="text-2xl sm:text-3xl font-semibold mb-6 text-center">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-4">
+              {homepageFaqSchema.mainEntity.map((item) => (
+                <div key={item.name} className="rounded-xl border bg-card p-4 sm:p-6">
+                  <h3 className="font-semibold text-sm sm:text-base mb-2">{item.name}</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-7">{item.acceptedAnswer.text}</p>
+                </div>
+              ))}
             </div>
           </section>
 

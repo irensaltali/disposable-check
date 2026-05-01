@@ -154,7 +154,6 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "rate-limiting-as-an-anti-spam-tool",
     ],
-    noindex: true,
   },
   {
     slug: "disposable-email-detection-api",
@@ -369,7 +368,6 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "check-email-disposability",
     ],
-    noindex: true,
   },
   {
     slug: "check-disposable-email-address",
@@ -477,7 +475,6 @@ export const blogPosts: BlogPost[] = [
       "temporary-email-detector",
       "disposable-email-detection-api",
     ],
-    noindex: true,
   },
   {
     slug: "temporary-email-detector",
@@ -585,7 +582,6 @@ export const blogPosts: BlogPost[] = [
       "check-disposable-email-address",
       "rate-limiting-as-an-anti-spam-tool",
     ],
-    noindex: true,
   },
   {
     slug: "rate-limiting-as-an-anti-spam-tool",
